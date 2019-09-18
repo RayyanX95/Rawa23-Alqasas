@@ -1,0 +1,29 @@
+.Container{
+    width: 90%;
+    margin-top: 100px;
+}
+.Container p {
+    font-weight: bold;
+    color: var(--lightDark);
+}
+.Form {
+    padding: 15px;
+    border: 1px solid var(--mainGray);
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #EEE, -3px -3px 5px #EEE;
+    width: 90%;
+}
+.Form p {
+    color: var(--mainWhite);
+    font-size: 22px;
+}
+.Form input {
+    color: var(--mainDark) !important;
+    box-shadow: 0 3px 4px rgba(214, 211, 211, 0.877);
+}
+.Form .EmptyInput {
+    border: 1px solid red;
+}
+.Form button, input, p {
+    font-size: 18px;
+}

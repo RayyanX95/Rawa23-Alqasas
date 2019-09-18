@@ -1,0 +1,19 @@
+.Ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+}
+
+.Nav {
+    color: var(--mainGray);
+    font-weight: bold;
+    text-align: right;
+    margin-right: 30px;
+    font-size: 1.2rem;
+}
+.Nav:hover {
+    color: var(--mainWhite);
+    text-decoration: none;
+}

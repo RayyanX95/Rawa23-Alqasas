@@ -1,0 +1,17 @@
+.AvailableIn a{
+    color: var(--mainWhite) !important;
+}
+.AvailableIn a{
+    color: var(--mainWhite);
+    margin-left: 10px;
+    padding: 6px;
+    background-color: var(--mainDark);
+    border: 1px solid var(--mainGray);
+    color: var(--mainWhite);
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+.AvailableIn a:hover {
+    background-color: var(--lightDark);
+}

@@ -1,0 +1,34 @@
+.Details {
+}
+.Details .Img_Download img {
+    border: 5px solid var(--mainWhite);
+    width: 100%;
+    border-radius: 5px;
+}
+.Details .Name, .NameLgScreen{
+    color: var(--mainWhite)
+}
+.Details .Name, .NameLgScreen * {
+    margin-bottom: 15px;
+}
+.Details .NameLgScreen {
+    display: none;
+}
+.Details .NameLgScreen i, span {
+    font-size: 18px;
+}
+.Details .NameLgScreen a, .Name a {
+    
+}
+.Details .NameLgScreen a:hover {
+}
+
+
+@media(min-width: 600px) {
+    .Details .Name{
+        display: none;
+    }
+    .Details .NameLgScreen {
+        display: inline-block;
+    }
+}

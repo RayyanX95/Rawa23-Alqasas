@@ -1,0 +1,32 @@
+.CategoryContainer {
+  height: 270px;
+  width: 23%;
+  margin: 10px 0;
+  margin-bottom: 30px;
+}
+.Preview {
+    height: 300px;
+    width: 100%;
+}
+
+.Category {
+  border: 3px solid var(--mainWhite);
+  height: 80%;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.ParContainer {
+  padding: 5px;
+}
+.ParBold, .ParNormal {
+  color: rgb(187, 187, 187);
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+}
+.ParNormal {
+  font-size: 0.85rem;
+}

@@ -1,0 +1,8 @@
+.Logo {
+    font-size: 28px;
+    color: var(--mainBlue);
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 80px;
+    margin-left: 80px;
+}

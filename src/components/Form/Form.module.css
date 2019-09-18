@@ -1,0 +1,41 @@
+.Form {
+    padding: 10px 15px;
+    border: 1px solid var(--lightBlue);
+    border-radius: 8px;
+    background-color: var(--lightDark);
+    width: 100%;
+}
+.Form *{
+    text-align: right;
+}
+
+.Form p  {
+    color: var(--mainBlue);
+    font-size: 1.1rem;
+}
+
+.Form input {
+    color: var(--darkBlue) !important;
+}
+
+.Form button {
+    background-color: var(--lightDark);
+    color: var(--mainBlue);
+    border: var(--mainBlue) 1px solid;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.Form button:hover {
+    background-color: var(--mainBlue);
+    color: var(--mainWhite);
+}
+.Form button, .Form input{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.TitleP {
+    font-weight: bold;
+    color: var(--mainBlue);
+    text-align: center;
+}

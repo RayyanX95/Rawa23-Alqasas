@@ -1,0 +1,9 @@
+.Container {
+    position: fixed;
+    top: 70px;
+    right: 0;
+}
+.AlertMsg {
+    z-index: 500;
+    position: relative;
+}
