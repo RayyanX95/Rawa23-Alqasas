@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Navigation />
       <Switch>
-        <Route path='/' exact component={SeriesEpisodes} />
+        <Route path='/' exact component={Home} />
         <Route path='/admin' component={Admin} />
       </Switch>
       <Footer />
