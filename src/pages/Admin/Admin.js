@@ -1,31 +1,59 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import Add from '../../components/Add/Add';
 import Categories from '../../components/Categories/Categories';
-import Modal from '../../components/UI/Modal/Modal';
-import { addSeries, resetUploadState } from '../../store/actions/index';
+import {
+    addSeries,
+    resetRequestsStates,
+    addEpisode,
+    selectSeries,
+    authRenderAdmin
+} from '../../store/actions/index';
 import getDateTime from '../../utilities/getDate';
+import Auth from '../../components/Auth/Auth';
 import AlertMessage from '../../components/UI/AlertMessage/AlertMessage';
+import Backdrop from '../../components/UI/Backdrop/Backdrop';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
+
+/**
+ * Edit Alert MSG...
+ */
 class Admin extends Component {
     state = {
-        isShowModal: false,
-        isAskDelete: false,
-        addFormToModal: false
+        showModal: false,
+        askDelete: false,
+        showEpisodeForm: false,
     }
 
     showModalHandler = () => {
 
-        this.setState({ isShowModal: true })
+        this.setState({ showModal: true })
     }
     closeModalHandler = () => {
-        this.setState({ isShowModal: false })
+        this.setState({ showModal: false })
     }
 
-    askAddSeriesConfirmationHandler = () => {
-        this.showModalHandler();
+    showAddEpisodeHandler = (seriesName) => {
+        console.log("showEpisodeForm: ", seriesName);
+
+        this.setState({ showEpisodeForm: true });
+        this.props.onSelectSeries(seriesName);
     }
+    addEpisodeHandler = (episodeFormInfo) => {
+        const episodeInfo = {};
+        for (let key in episodeFormInfo) {
+            episodeInfo[key] = episodeFormInfo[key].val;
+        }
+        this.props.onAddEpisode(this.props.seriesName, episodeInfo);
+        this.closeModalHandler();
+    }
+
+    closeAddEpisodeHandler = () => {
+        this.setState({ showEpisodeForm: false });
+    }
+
     addSeriesHandler = (seriesFormInfo) => {
         this.closeModalHandler();
 
@@ -33,59 +61,105 @@ class Admin extends Component {
         for (let key in seriesFormInfo) {
             seriesInfo[key] = seriesFormInfo[key].val
         }
+        seriesInfo["englishName"] = seriesInfo.englishName.replace(/\s+/g, '-');
         seriesInfo["episodesURL"] = "https://et3alem-w-etrafah.firebaseio.com/" + seriesInfo.englishName + ".json"
         const getDate = getDateTime();
         console.log('seriesInfo["episodesURL"]: ', seriesInfo["episodesURL"]);
         seriesInfo['uploadedAt'] = getDate;
 
-        this.props.onAddSeries(seriesInfo)
+        this.props.onAddSeries(seriesInfo, this.props.token)
     }
 
-    askAddEpisodeConfirmationHandler = () => {
+    askAddConfirmationHandler = () => {
         this.showModalHandler();
     }
     askDeleteConfirmationHandler = () => {
-        this.setState({ isAskDelete: true, showModal: true });
+        this.setState({ askDelete: true, showModal: true });
     }
+
 
     closeAlertMsgHandler = () => {
         this.props.onResetUploadState();
     }
 
+    componentDidMount = () => {
+        this.props.onRenderAdmin();
+    }
+    /**
+     * add admin sign in +++
+     * make navigation to null til admin sign in +++
+     * add use login
+     */
     render() {
-        return (
-            <React.Fragment>
-                <Add
-                    isShowModal={this.state.isShowModal}
-                    closeModal={this.closeModalHandler}
-                    askAddSeries={this.askAddSeriesConfirmationHandler}
-                    addSeries={this.addSeriesHandler} />
+        if (!(this.props.authAdmin && this.props.token)) {
+            return (
+                <Auth admin={true} />
+            )
+        }
 
-                <Categories
-                    addEpisode={this.addEpisodeHandler}
-                    admin={true} />
-
+        if (this.props.loading) {
+            return <Spinner />
+        }
+        let alertMsg = null;
+        if (this.props.uploaded || this.props.wrongUpload) {
+            return (
                 <AlertMessage
                     success={this.props.uploaded}
                     failed={this.props.wrongUpload}
                     close={this.closeAlertMsgHandler} />
-            </React.Fragment>
+            )
+        }
+
+        if (this.state.showEpisodeForm) {
+            return (
+                <React.Fragment>
+                    <Add
+                        showEpisodeForm={true}
+                        closeAddEpisode={this.closeAddEpisodeHandler}
+                        showModal={this.state.showModal}
+                        closeModal={this.closeModalHandler}
+                        askAdd={this.askAddConfirmationHandler}
+                        addEpisode={this.addEpisodeHandler} />
+                </React.Fragment>
+            )
+        }
+
+        return (
+            <React.Fragment>
+                {alertMsg}
+                <Add
+                    showModal={this.state.showModal}
+                    closeModal={this.closeModalHandler}
+                    askAdd={this.askAddConfirmationHandler}
+                    addSeries={this.addSeriesHandler} />
+
+                <Categories
+                    showEpisodeForm={this.showAddEpisodeHandler}
+                    success={this.props.uploaded}
+                    admin={true} />
+            </React.Fragment >
         )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        selectedSeries: state.series.selectedSeries,
+        seriesName: state.series.selectedSeries,
         uploaded: state.series.uploadedSuccessfully,
-        wrongUpload: state.series.wrongUpload
+        wrongUpload: state.series.wrongUpload,
+        authAdmin: state.auth.authAdminSuccess,
+        token: state.auth.token,
+        loading: state.ui.loading
     }
 }
 
 const mapDispatchToPops = dispatch => {
     return {
-        onAddSeries: (seriesInfo) => dispatch(addSeries(seriesInfo)),
-        onResetUploadState: () => dispatch(resetUploadState())
+        onAddSeries: (seriesInfo, token) => dispatch(addSeries(seriesInfo, token)),
+        onResetUploadState: () => dispatch(resetRequestsStates()),
+        onAddEpisode: (seriesName, episodeInfo) => dispatch(addEpisode(seriesName, episodeInfo)),
+        onSelectSeries: (seriesName) => dispatch(selectSeries(seriesName)),
+        onRenderAdmin: () => dispatch(authRenderAdmin()),
     }
 }
 

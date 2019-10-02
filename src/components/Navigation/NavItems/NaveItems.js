@@ -3,18 +3,33 @@ import { NavLink } from 'react-router-dom'
 
 import classes from './NaveItems.module.css'
 
-const NaveItems = () => {
+const NaveItems = (props) => {
     return (
         <ul className={classes.Ul} >
+            {
+                props.authAdmin
+                    ? <li>
+                        <NavLink
+                            className={classes.Nav}
+                            to="/admin"
+                            activeStyle={{
+                                fontWeight: "bold",
+                                color: "#00bfff"
+                            }}
+                        > أدمن</NavLink>
+                    </li>
+                    : null
+            }
+
             <li>
                 <NavLink
                     className={classes.Nav}
-                    to="/admin"
+                    to="/auth"
                     activeStyle={{
                         fontWeight: "bold",
                         color: "#00bfff"
-                    }} 
-                    > أدمن</NavLink>
+                    }}
+                > تسجيل</NavLink>
             </li>
 
             <li>

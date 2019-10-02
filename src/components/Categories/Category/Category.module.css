@@ -1,8 +1,9 @@
 .CategoryContainer {
-  height: 270px;
+  height: 350px;
   width: 23%;
   margin: 10px 0;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 .Preview {
     height: 300px;
@@ -30,3 +31,18 @@
 .ParNormal {
   font-size: 0.85rem;
 }
+
+.Add {
+  width: 70%;
+  transition: all 0.5s ease-out;
+  padding: 0;
+  border: 2px red solid;
+}
+/* @media (min-width: 600px) {
+  .Add {
+      width: 500px;
+      top: 20%;
+      left: calc(50% - 250px);
+      padding: 0;
+  }
+} */

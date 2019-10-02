@@ -2,3 +2,32 @@
     background-color: #222222;
     margin-top: 70px;
 }
+
+.headTitle {
+    padding: 3px;
+    color: var(--mainDark);
+    font-size: 1.2rem;
+}
+.SeriesName {
+    color: var(--mainDark);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.Message {
+    color: red;
+    font-size: 1rem;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.Controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 35px;
+    padding: 0;
+}
+.Controls button{
+    margin: 0;
+    font-weight: bold;
+}

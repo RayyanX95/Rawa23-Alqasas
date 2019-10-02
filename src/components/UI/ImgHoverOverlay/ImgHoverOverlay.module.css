@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
 
 .Image {
@@ -24,7 +25,8 @@
 }
 
 .X, .AddBtn {
-  background-color: var(--mainWhite);
+  background-color: var(--mainBlue);
+  /* background-color: var(--mainWhite); */
   border: none;
   border-radius: 50%;
   padding: 0;
@@ -35,8 +37,8 @@
   right: -8%;
   top: -8%;
 }
-.X:hover, .AddBtn:hover {
-  background-color: var(--mainBlue);
+.X:hover {
+  background-color: var(--mainRed);
 }
 
 .Add {

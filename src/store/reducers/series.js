@@ -1,15 +1,22 @@
 import {
-    ADD_SERIES,
     UPLOADED_SUCCESSFULLY,
     WRONG_UPLOAD,
-    RESET_UPLOAD_STATE,
+    RESET_REQUEST_STATES,
+    GET_SERIES,
+    SELECT_SERIES,
+    DELETE_SUCCESS,
+    DELETE_FAIL
 } from '../actions/actionsTypes';
 
 const initialState = {
+    series: null,
     selectedSeries: null,
     selectedSeriesEpisodes: null,
     uploadedSuccessfully: false,
-    wrongUpload: false
+    wrongUpload: false,
+
+    deleteSuccess: false,
+    deleteFail: false
 }
 
 const reducer = (state = initialState, actions) => {
@@ -24,11 +31,35 @@ const reducer = (state = initialState, actions) => {
                 ...state,
                 wrongUpload: true
             };
-        case RESET_UPLOAD_STATE:
+        case RESET_REQUEST_STATES:
             return {
                 ...state,
                 wrongUpload: false,
-                uploadedSuccessfully: false
+                uploadedSuccessfully: false,
+                deleteSuccess: false,
+                deleteFail: false
+            };
+        case GET_SERIES:
+            return {
+                ...state,
+                series: actions.series,
+            };
+        case SELECT_SERIES:
+            return {
+                ...state,
+                selectedSeries: actions.selectedSeries,
+            };
+        case DELETE_SUCCESS:
+            return {
+                ...state,
+                deleteSuccess: true,
+                deleteFail: false
+            };
+        case DELETE_FAIL:
+            return {
+                ...state,
+                deleteFail: true,
+                deleteSuccess: false
             };
         default:
             return state;

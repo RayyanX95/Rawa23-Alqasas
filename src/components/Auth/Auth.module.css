@@ -1,0 +1,66 @@
+.Auth {
+    padding: 5px;
+    border: 1px solid var(--lightBlue);
+    border-radius: 8px;
+    background-color: var(--lightDark);
+    margin: 20px auto;
+    margin-top: 180px;
+    width: 90%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.Auth input, button {
+    display: block;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.Auth input {
+    color: var(--darkBlue) !important;
+    text-align: right;
+    width: 90% !important;
+}
+
+.Auth button {
+    background-color: var(--lightDark);
+    color: var(--mainBlue);
+    border: var(--mainBlue) 1px solid;
+    padding: 5px 10px;
+    border-radius: 5px;
+    /* font-size: 1.3rem; */
+}
+.Auth button:hover {
+    background-color: var(--mainBlue);
+    color: var(--mainWhite);
+}
+.Auth h3  {
+    color: var(--mainBlue);
+    font-size: 1.6rem;
+    margin-top: 10px;
+    margin-bottom: 20px
+}
+
+.ParClick {
+    color: var(--mainWhite);
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.ParClick:hover {
+    text-decoration: underline;
+}
+.RedPar {
+    color: brown;
+    font-size: 1.2rem;
+}
+
+/**************************************************/
+
+@media (min-width: 800px) {
+    .Auth {
+        width: 600px;
+    }
+}

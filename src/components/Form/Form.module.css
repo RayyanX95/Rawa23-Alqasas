@@ -1,9 +1,11 @@
 .Form {
+    position: relative;
     padding: 10px 15px;
     border: 1px solid var(--lightBlue);
     border-radius: 8px;
     background-color: var(--lightDark);
     width: 100%;
+    margin-top: 50px;
 }
 .Form *{
     text-align: right;
@@ -39,3 +41,11 @@
     color: var(--mainBlue);
     text-align: center;
 }
+
+.X {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    margin: 0px 5px;
+  }

@@ -8,21 +8,28 @@ const Category = (props) => {
     if (props.preview) {
         containerClass = [classes.Preview]
     }
+
     return (
-        <div className={containerClass} >
-            <div className={classes.Category} >
-                <ImgHoverOverlay
-                    add={props.add}
-                    admin={props.admin}
-                    imgURL={props.imgURL}
-                    name={props.arabicName}
-                    description={props.description} />
+        <React.Fragment>
+            <div
+                className={containerClass}
+                // onClickCapture={props.detailsHandler}
+                 >
+                <div className={classes.Category} >
+                    <ImgHoverOverlay
+                        add={props.showEpisodeForm}
+                        admin={props.admin}
+                        imgURL={props.imgURL}
+                        name={props.name}
+                        description={props.description}
+                        delete={props.delete} />
+                </div>
+                <div className={classes.ParContainer} >
+                    <p className={classes.ParBold} >{props.name}</p>
+                    <p className={classes.ParNormal} >{props.episodeNo} عدد الحلقات</p>
+                </div>
             </div>
-            <div className={classes.ParContainer} >
-                <p className={classes.ParBold} >{props.arabicName}</p>
-                <p className={classes.ParNormal} >{props.episodeNo}عدد الحلقات</p>
-            </div>
-        </div>
+        </React.Fragment>
     )
 }
 

@@ -21,7 +21,7 @@ class Modal extends Component {
                     }} >
                     {this.props.children}
                 </div>
-            </React.Fragment >
+            </React.Fragment>
         );
     }
 }

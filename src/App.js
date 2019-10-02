@@ -6,6 +6,7 @@ import Navigation from './components/Navigation/Navigation';
 import Footer from './components/UI/Footer/Footer';
 import Home from './pages/Home/Home';
 import Admin from './pages/Admin/Admin';
+import SeriesEpisodes from './pages/SeriesEpisodes/SeriesEpisodes';
 import './App.css';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
     <div className="App">
       <Navigation />
       <Switch>
-        <Route path='/' exact component={Home} />
+        <Route path='/' exact component={SeriesEpisodes} />
         <Route path='/admin' component={Admin} />
       </Switch>
       <Footer />
