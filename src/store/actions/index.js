@@ -10,7 +10,9 @@ export {
 
 export {
     authAdmin,
-    authRenderAdmin
+    authRenderAdmin,
+    auth,
+    authLogout
 } from './auth';
 
 export {

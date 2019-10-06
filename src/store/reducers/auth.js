@@ -4,7 +4,8 @@ import {
     AUTH_ADMIN_FAIL,
     AUTH_RENDER_ADMIN,
     AUTH_SUCCESS,
-    AUTH_FAIL
+    AUTH_FAIL,
+    AUTH_LOGOUT
 } from '../actions/actionsTypes';
 
 const initialState = {
@@ -57,6 +58,11 @@ export default (state = initialState, actions) => {
                     message: "من فضلك تأكد من البريد الاكتروني او الرقم السري"
                 },
                 loading: false
+            }
+        case AUTH_LOGOUT:
+            return {
+                ...state,
+                token: null,
             }
 
         default:

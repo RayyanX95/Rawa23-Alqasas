@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 
-import * as actions from "../../../store/actions/index"
-
+import { authLogout } from '../../../store/actions/index';
 class Logout extends Component {
 
     componentDidMount = () => {
-        this.props.onLogout();
+        this.props.onAuthLogout();
     }
     render() {
         return (
@@ -18,7 +17,7 @@ class Logout extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogout: () => dispatch(actions.logoutHandler())
+        onAuthLogout: () => dispatch(authLogout())
     }
 }
 

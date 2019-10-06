@@ -1,6 +1,9 @@
 .Container {
     background-color: #222222;
     margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .headTitle {
@@ -31,3 +34,9 @@
     margin: 0;
     font-weight: bold;
 }
+
+@media (max-width: 444px) {
+    .Container {
+        padding: 40px;
+    }
+  }

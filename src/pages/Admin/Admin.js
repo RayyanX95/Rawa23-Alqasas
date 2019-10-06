@@ -88,7 +88,7 @@ class Admin extends Component {
     /**
      * add admin sign in +++
      * make navigation to null til admin sign in +++
-     * add use login
+     * add user login
      */
     render() {
         if (!(this.props.authAdmin && this.props.token)) {

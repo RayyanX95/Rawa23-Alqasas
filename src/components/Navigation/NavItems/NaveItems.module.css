@@ -17,3 +17,12 @@
     color: var(--mainWhite);
     text-decoration: none;
 }
+
+.Star {
+    font-size: 35px;
+    color: aliceblue;
+}
+.Stare {
+    color: red;
+    font-size: 35px;
+}    

@@ -18,6 +18,7 @@ export const AUTH_ADMIN_FAIL = "AUTH_ADMIN_FAIL";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL";
 export const AUTH_RENDER_ADMIN = "AUTH_RENDER_ADMIN";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
 export const UI_START_LOADING = "UI_START_LOADING";
 export const UI_STOP_LOADING = "UI_STOP_LOADING";

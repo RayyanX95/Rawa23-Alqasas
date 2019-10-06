@@ -7,6 +7,20 @@ const NaveItems = (props) => {
     return (
         <ul className={classes.Ul} >
             {
+                props.isAuth
+                    ? <li>
+                        <NavLink
+                            className={classes.Nav}
+                            to="/logout"
+                            activeStyle={{
+                                fontWeight: "bold",
+                                color: "#00bfff"
+                            }}
+                        >تسجيل الخروج</NavLink>
+                    </li>
+                    : null
+            }
+            {
                 props.authAdmin
                     ? <li>
                         <NavLink
@@ -20,18 +34,20 @@ const NaveItems = (props) => {
                     </li>
                     : null
             }
-
-            <li>
-                <NavLink
-                    className={classes.Nav}
-                    to="/auth"
-                    activeStyle={{
-                        fontWeight: "bold",
-                        color: "#00bfff"
-                    }}
-                > تسجيل</NavLink>
-            </li>
-
+            {
+                !props.isAuth
+                    ? <li>
+                        <NavLink
+                            className={classes.Nav}
+                            to="/register"
+                            activeStyle={{
+                                fontWeight: "bold",
+                                color: "#00bfff"
+                            }}
+                        > تسجيل</NavLink>
+                    </li>
+                    : null
+            }
             <li>
                 <NavLink
                     exact

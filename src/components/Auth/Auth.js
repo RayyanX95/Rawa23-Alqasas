@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { authAdmin } from '../../store/actions/index';
+import { authAdmin, auth } from '../../store/actions/index';
 import classes from './Auth.module.css';
 
 class Auth extends Component {
@@ -20,7 +20,8 @@ class Auth extends Component {
                     isEmail: true
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                signInField: true,
             },
             password: {
                 elementConfig: {
@@ -33,7 +34,24 @@ class Auth extends Component {
                     minLength: 6
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                signInField: true
+            },
+            rePassword: {
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'أعد ادخال الرقم السري'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6,
+                    equalTo: "password"
+                },
+                valid: false,
+                touched: false,
+                signInField: false,
+                signupField: true,
             }
         },
         isSignup: true
@@ -84,10 +102,11 @@ class Auth extends Component {
     }
 
     submitHandler = () => {
+        const controls = this.state.controls;
         if (this.props.admin) {
-            this.props.onAuthAdmin(this.state.controls.email.value, this.state.controls.password.value);
+            this.props.onAuthAdmin(controls.email.value, controls.password.value);
         } else {
-
+            this.props.onAuth(controls.email.value, controls.password.value, this.state.isSignup)
         }
     }
 
@@ -101,14 +120,24 @@ class Auth extends Component {
 
     render() {
         const formElementsArray = [];
-        for (let key in this.state.controls) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.controls[key]
-            });
+        const controls = this.state.controls;
+        for (let key in controls) {
+            if (this.props.admin && controls[key].signInField) {
+                formElementsArray.push({
+                    id: key,
+                    config: controls[key]
+                });
+            }
+            if ((!this.props.admin) && (controls[key].signInField || (controls[key].signupField && this.state.isSignup))) {
+                console.log("ss ", (!this.props.admin && controls[key].signInField));
+                formElementsArray.push({
+                    id: key,
+                    config: controls[key]
+                });
+            }
         }
 
-        let headerTitle = <h3>{!this.state.isSignup ? "انشاء حساب جديد" : "تسجيل دخول"}</h3>
+        let headerTitle = <h3>{this.state.isSignup ? "انشاء حساب جديد" : "تسجيل دخول"}</h3>
         let switchHandler = (
             <p
                 className={classes.ParClick}
@@ -117,7 +146,7 @@ class Auth extends Component {
         )
         if (this.props.admin) {
             switchHandler = null;
-            headerTitle = <h3>(Admin)تسجيل دخول</h3>
+            headerTitle = <h3>(أدمن)تسجيل دخول</h3>
         }
 
         let form = formElementsArray.map(formElement => (
@@ -130,13 +159,16 @@ class Auth extends Component {
                 value={formElement.config.value} />
         ));
 
+        let errorMsg = null;
         if (this.props.loading) {
             form = <Spinner />
         }
-
-        let errorMsg = null;
-        if (this.props.error) {
+        else if (this.props.error) {
             errorMsg = <p className={classes.RedPar} >{this.props.error.message}</p>
+        }
+
+        if (this.props.isAuthenticated || this.props.authAdmin) {
+            return <Redirect to="/" />
         }
 
 
@@ -149,7 +181,7 @@ class Auth extends Component {
                     <button
                         className="btn btn-outline-success"
                         onClick={this.submitHandler}
-                    >سجل بياناتك</button>
+                    >{!this.state.isSignup || this.props.admin ? "تسجيل الدخول" : "تسجل البيانات"}</button>
                 </form>
                 {switchHandler}
             </div>
@@ -159,8 +191,8 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
     return {
-        // loading: state.auth.loading,
-        // isAuthenticated: state.auth.token,
+        loading: state.auth.loading,
+        isAuthenticated: state.auth.token,
         authAdmin: state.auth.authAdminSuccess,
         error: state.auth.error
     }
@@ -168,7 +200,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuthAdmin: (email, password) => dispatch(authAdmin(email, password))
+        onAuthAdmin: (email, password) => dispatch(authAdmin(email, password)),
+        onAuth: (email, password, isSignup) => dispatch(auth(email, password, isSignup)),
     };
 };
 

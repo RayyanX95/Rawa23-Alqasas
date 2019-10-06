@@ -26,16 +26,15 @@
 
 .X, .AddBtn {
   background-color: var(--mainBlue);
-  /* background-color: var(--mainWhite); */
   border: none;
   border-radius: 50%;
   padding: 0;
   cursor: pointer;
 }
-.X {
+.X, .Favorite {
   position: absolute;
-  right: -8%;
-  top: -8%;
+  right: -10%;
+  top: -10%;
 }
 .X:hover {
   background-color: var(--mainRed);
@@ -48,4 +47,10 @@
   justify-content: center;
   width: 100%;
   padding: 5px;
+}
+
+.Favorite {
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
