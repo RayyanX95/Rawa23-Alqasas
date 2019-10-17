@@ -1,9 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 
-import classes from './NaveItems.module.css'
+import MdHome from 'react-ionicons/lib/MdHome';
+import classes from './NaveItems.module.css';
 
 const NaveItems = (props) => {
+    let home = <span style={{ fontSize: '1.5em' }}><i class="fas fa-home"></i></span>
+    let signIn = <span style={{ fontSize: '1.5em' }}><i class="fas fa-user-plus"></i></span>
+    let signOut = <span style={{ fontSize: '1.6em' }}><i class="fas fa-sign-out-alt"></i></span>
+    let admin = <span style={{ fontSize: '1.5em' }}><i class="fas fa-user-cog"></i></span>
     return (
         <ul className={classes.Ul} >
             {
@@ -16,7 +21,7 @@ const NaveItems = (props) => {
                                 fontWeight: "bold",
                                 color: "#00bfff"
                             }}
-                        >تسجيل الخروج</NavLink>
+                        >{signOut}</NavLink>
                     </li>
                     : null
             }
@@ -30,7 +35,7 @@ const NaveItems = (props) => {
                                 fontWeight: "bold",
                                 color: "#00bfff"
                             }}
-                        > أدمن</NavLink>
+                        >{admin}</NavLink>
                     </li>
                     : null
             }
@@ -44,7 +49,7 @@ const NaveItems = (props) => {
                                 fontWeight: "bold",
                                 color: "#00bfff"
                             }}
-                        > تسجيل</NavLink>
+                        >{signIn}</NavLink>
                     </li>
                     : null
             }
@@ -56,7 +61,7 @@ const NaveItems = (props) => {
                     activeStyle={{
                         fontWeight: "bold",
                         color: "#00bfff"
-                    }} > الرئيسية</NavLink>
+                    }} >{home}</NavLink>
             </li>
         </ul>
     )

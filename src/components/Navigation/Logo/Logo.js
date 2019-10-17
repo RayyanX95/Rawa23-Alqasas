@@ -4,8 +4,10 @@ import classes from './Logo.module.css'
 
 export default function Logo() {
     return (
-        <div className={classes.Logo} >
-            <p>روائع القصص</p>
-        </div>
+        <a href="/">
+            <div className={classes.Logo} >
+                <span style={{ fontSize: '1.9em'}}><i className="fas fa-quran"></i></span>
+            </div>
+        </a>
     )
 }

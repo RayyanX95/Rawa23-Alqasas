@@ -12,7 +12,8 @@ export {
     authAdmin,
     authRenderAdmin,
     auth,
-    authLogout
+    authLogout,
+    authCheckState
 } from './auth';
 
 export {

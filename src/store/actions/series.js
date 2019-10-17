@@ -147,7 +147,6 @@ function apiCall(npt, playlistID, seriesName) {
                         console.log(err);
                         wrongUpload();
                     });
-                // resetRequestsStates();
             }
         })
         .catch(err => console.log(err))
@@ -156,8 +155,11 @@ function apiCall(npt, playlistID, seriesName) {
 
 
 
-export const getSeries = () => {
+export const getSeries = (token, userId) => {
     return dispatch => {
+        // use it to get the saved series to a specific user (userId)
+        const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo"' + userId + '"'
+
         fetch(rootDBUrl + "seriesInfo.json")
             .then(res => res.json())
             .then(parsedRes => {
