@@ -7,15 +7,16 @@ import Navigation from './components/Navigation/Navigation';
 import Footer from './components/UI/Footer/Footer';
 import Home from './pages/Home/Home';
 import Admin from './pages/Admin/Admin';
-import SeriesEpisodes from './pages/SeriesEpisodes/SeriesEpisodes';
+import SeriesDetails from './pages/SeriesDetails/SeriesDetails';
 import Auth from './components/Auth/Auth';
 import Logout from './components/Auth/Logout/Logout'
 import './App.css';
-import { authCheckState } from './store/actions';
+import { authCheckState, getSeries } from './store/actions';
 
 class App extends Component {
   componentDidMount = () => {
     this.props.onTryAutoSignUp();
+    this.props.onGetSeries();
   }
   render() {
     return (
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path='/register' component={Auth} />
           <Route path='/admin' component={Admin} />
           <Route path='/logout' component={Logout} />
+          <Route path='/details' component={SeriesDetails} />
         </Switch>
         <Footer />
       </div>
@@ -35,7 +37,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoSignUp: () => dispatch(authCheckState())
+        onGetSeries: () => dispatch(getSeries()),
+        onTryAutoSignUp: () => dispatch(authCheckState()),
   }
 }
 

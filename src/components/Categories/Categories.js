@@ -49,7 +49,10 @@ class Categories extends Component {
                             this.props.series.map(series => {
                                 return <Category
                                     key={series.key}
+                                    series={series}
+                                    id={series.key}
                                     name={series.arabicName}
+                                    link={series.englishName}
                                     imgURL={series.imgURL}
                                     description={series.description}
                                     episodeNo={series.episodeNo}

@@ -129,7 +129,6 @@ class Auth extends Component {
                 });
             }
             if ((!this.props.admin) && (controls[key].signInField || (controls[key].signupField && this.state.isSignup))) {
-                console.log("ss ", (!this.props.admin && controls[key].signInField));
                 formElementsArray.push({
                     id: key,
                     config: controls[key]

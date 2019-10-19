@@ -1,36 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import classes from './Category.module.css'
 import ImgHoverOverlay from '../../UI/ImgHoverOverlay/ImgHoverOverlay';
 
-const Category = (props) => {
-    let containerClass = [classes.CategoryContainer];
-    if (props.preview) {
-        containerClass = [classes.Preview]
-    }
+class Category extends Component {
 
-    return (
-        <React.Fragment>
-            <div
-                className={containerClass}
-                // onClickCapture={props.detailsHandler}
-                 >
-                <div className={classes.Category} >
-                    <ImgHoverOverlay
-                        add={props.showEpisodeForm}
-                        admin={props.admin}
-                        imgURL={props.imgURL}
-                        name={props.name}
-                        description={props.description}
-                        delete={props.delete} />
+    clickDetailsHandler = () => {
+        this.props.history.push({
+            pathname: '/details',
+            search: `?id=${this.props.id}&name=${this.props.link}`,
+            state: this.props.series
+        })
+    }
+    render() {
+        let containerClass = [classes.CategoryContainer];
+        if (this.props.preview) {
+            containerClass = [classes.Preview]
+        }
+        return (
+            <React.Fragment>
+                <div className={containerClass}
+                    onClickCapture={this.clickDetailsHandler}>
+                    <div className={classes.Category} >
+                        <ImgHoverOverlay
+                            add={this.props.showEpisodeForm}
+                            admin={this.props.admin}
+                            imgURL={this.props.imgURL}
+                            name={this.props.name}
+                            description={this.props.description}
+                            delete={this.props.delete} />
+                    </div>
+                    <div className={classes.ParContainer} >
+                        <p className={classes.ParBold} >{this.props.name}</p>
+                        <p className={classes.ParNormal} >{this.props.episodeNo} عدد الحلقات</p>
+                    </div>
                 </div>
-                <div className={classes.ParContainer} >
-                    <p className={classes.ParBold} >{props.name}</p>
-                    <p className={classes.ParNormal} >{props.episodeNo} عدد الحلقات</p>
-                </div>
-            </div>
-        </React.Fragment>
-    )
+            </React.Fragment>
+        )
+    }
 }
 
-export default Category
+export default withRouter(Category)

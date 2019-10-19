@@ -158,7 +158,7 @@ function apiCall(npt, playlistID, seriesName) {
 export const getSeries = (token, userId) => {
     return dispatch => {
         // use it to get the saved series to a specific user (userId)
-        const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo"' + userId + '"'
+        // const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo"' + userId + '"'
 
         fetch(rootDBUrl + "seriesInfo.json")
             .then(res => res.json())
@@ -179,6 +179,12 @@ export const getSeries = (token, userId) => {
                  * Add here a modal to indicate that no internet connection!
                  */
             });
+    }
+}
+
+export const saveSeries = () => {
+    return dispatch => {
+        
     }
 }
 export const setSeries = (series) => {

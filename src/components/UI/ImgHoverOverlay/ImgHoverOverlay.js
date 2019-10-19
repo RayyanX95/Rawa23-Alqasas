@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import MdCloseCircle from 'react-ionicons/lib/MdCloseCircle';
 import MdAddCircle from 'react-ionicons/lib/MdAddCircle';
@@ -9,19 +10,12 @@ const ImgHoverOverlay = (props) => {
     let addBtn = null;
     let edgeIcon = null;
 
-    if (true) {
-        edgeIcon = (
-            <MdHeart className={classes.Favorite} fontSize="50px" color="#DDD" />
-        )
-    }
     if (props.admin) {
-        // edgeIcon = (
-        //     <MdCloseCircle
-        //         className={classes.X}
-        //         onClick={props.delete}
-        //         fontSize="25px" color="#cfcdcd" />
         edgeIcon = (
-            <MdHeart className={classes.Favorite} fontSize="50px" color="red" />
+            <MdCloseCircle
+                className={classes.X}
+                onClick={props.delete}
+                fontSize="25px" color="#cfcdcd" />
         )
         addBtn = (
             <MdAddCircle
@@ -33,7 +27,7 @@ const ImgHoverOverlay = (props) => {
     }
     let description = props.description;
     if (description.length > 50) {
-        description = props.description.substring(0, 50) + "...";
+        description = props.description.substring(0, 100) + "...";
     }
     return (
         <div className={classes.Container}>
@@ -48,4 +42,4 @@ const ImgHoverOverlay = (props) => {
     )
 }
 
-export default ImgHoverOverlay
+export default withRouter(ImgHoverOverlay)
