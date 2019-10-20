@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 
-import MdHome from 'react-ionicons/lib/MdHome';
+// import MdHome from 'react-ionicons/lib/MdHome';
 import classes from './NaveItems.module.css';
 
 const NaveItems = (props) => {
-    let home = <span style={{ fontSize: '1.5em' }}><i class="fas fa-home"></i></span>
-    let signIn = <span style={{ fontSize: '1.5em' }}><i class="fas fa-user-plus"></i></span>
-    let signOut = <span style={{ fontSize: '1.6em' }}><i class="fas fa-sign-out-alt"></i></span>
-    let admin = <span style={{ fontSize: '1.5em' }}><i class="fas fa-user-cog"></i></span>
+    let home = <span style={{ fontSize: '1.5em' }}><i className="fas fa-home"></i></span>
+    let signIn = <span style={{ fontSize: '1.5em' }}><i className="fas fa-user-plus"></i></span>
+    let signOut = <span style={{ fontSize: '1.6em' }}><i className="fas fa-sign-out-alt"></i></span>
+    let admin = <span style={{ fontSize: '1.5em' }}><i className="fas fa-user-cog"></i></span>
     return (
         <ul className={classes.Ul} >
             {

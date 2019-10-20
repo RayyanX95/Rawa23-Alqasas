@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Form from '../Form/Form';
 import Modal from '../UI/Modal/Modal';
 import Category from '../Categories/Category/Category';
-import YouTubeVideoPlayer from '../Video/YouTubeVideoPlayer';
-import AlertMessage from '../UI/AlertMessage/AlertMessage';
+// import YouTubeVideoPlayer from '../Video/YouTubeVideoPlayer';
+// import AlertMessage from '../UI/AlertMessage/AlertMessage';
 import classes from './Add.module.css';
 
 const ADD_EPISODE = {
@@ -127,7 +127,8 @@ class Add extends Component {
                             closeAddEpisode={this.props.closeAddEpisode}
                             inputChangedHandler={this.inputChangedHandler}
                             clicked={this.props.askAdd}
-                            close={this.props.showEpisodeForm} />
+                            close={this.props.showEpisodeForm}
+                            seriesName={this.props.seriesName} />
                     </div>
                 </div>
 

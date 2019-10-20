@@ -9,20 +9,34 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 
 class SeriesDetails extends Component {
   state = {
-    queryParams: null
+    selectedSeries: null
+  }
+
+  componentDidMount = () => {
+    const queryParams = ParseQueryParams(this.props.location.search)
+    if (this.props.series) {
+      let selectedSeries = null;
+      selectedSeries = this.props.series.find(ser => ser.englishName === queryParams.name);
+      this.setState({ selectedSeries: selectedSeries })
+    }
+  }
+
+  componentDidUpdate = () => {
+    const queryParams = ParseQueryParams(this.props.location.search)
+    if (!this.state.selectedSeries) {
+      let selectedSeries = null;
+      selectedSeries = this.props.series.find(ser => ser.englishName === queryParams.name);
+      this.setState({ selectedSeries: selectedSeries })
+    }
   }
 
   render() {
-    const queryParams = ParseQueryParams(this.props.location.search)
-    let selectedSeries = null
-    if (this.props.series) {
-      selectedSeries = this.props.series.find(ser => ser.key === queryParams.id);
-      console.log("selectedSeries: ", selectedSeries);
+    if (this.state.selectedSeries) {
       return (
         <div className={classes.Container} >
           <div className={classes.VideoContainer} >
             <YouTubeVideoPlayer
-              videoID={selectedSeries.startTrailer}
+              videoID={this.state.selectedSeries.startTrailer}
               height={540} />
           </div>
           <div className={classes.List} >

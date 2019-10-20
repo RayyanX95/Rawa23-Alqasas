@@ -1,28 +1,26 @@
 import React from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import MdCloseCircle from 'react-ionicons/lib/MdCloseCircle';
 import MdAddCircle from 'react-ionicons/lib/MdAddCircle';
-import MdHeart from 'react-ionicons/lib/MdHeart';
 import classes from './ImgHoverOverlay.module.css';
 
 const ImgHoverOverlay = (props) => {
     let addBtn = null;
     let edgeIcon = null;
-
     if (props.admin) {
         edgeIcon = (
             <MdCloseCircle
                 className={classes.X}
-                onClick={props.delete}
-                fontSize="25px" color="#cfcdcd" />
+                onClick={(e) => {e.stopPropagation();props.delete()}}
+                fontSize="35px" color="#cfcdcd" />
         )
         addBtn = (
             <MdAddCircle
                 className={classes.AddBtn}
-                onClick={props.add}
-                fontSize="60px" color="#cfcdcd"
-                beat={true} />
+                onClick={(e) => {e.stopPropagation();props.add()}}
+                // beat={true} 
+                fontSize="60px" color="#cfcdcd" />
         )
     }
     let description = props.description;

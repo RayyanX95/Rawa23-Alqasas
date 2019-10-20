@@ -6,24 +6,24 @@ import classes from './Form.module.css'
 
 const Form = (props) => {
     let closeBtn = null;
-    let title = " مسلسل جديد";
+    let title = "اضف مسلسل جديد";
     let btnTitle = "أضف المسلسل"
     if (props.close) {
-        title = "حلقة جديدة";
+        title = props.seriesName;
         btnTitle = "أضف الحلقة"
         closeBtn = (
             <IosClose
                 className={classes.X}
                 onClick={props.closeAddEpisode}
                 fontSize="60px" color="#a52a2a"
-                shake={true}
+                // shake={true}
             />
         )
     }
     return (
         <form className={classes.Form}>
             {closeBtn}
-            <p className={classes.TitleP} >أضف {title}</p>
+            <p className={classes.TitleP} >{title}</p>
             <p><strong style={{ color: 'red' }}> * </strong>يجب إدخال البيانات ذات العلامة</p>
             {
                 props.formElementsArray.map((elem) =>

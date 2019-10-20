@@ -18,6 +18,7 @@ class App extends Component {
     this.props.onTryAutoSignUp();
     this.props.onGetSeries();
   }
+
   render() {
     return (
       <div className="App">
@@ -37,8 +38,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-        onGetSeries: () => dispatch(getSeries()),
-        onTryAutoSignUp: () => dispatch(authCheckState()),
+    onGetSeries: () => dispatch(getSeries()),
+    onTryAutoSignUp: () => dispatch(authCheckState()),
   }
 }
 

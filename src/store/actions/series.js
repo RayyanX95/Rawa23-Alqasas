@@ -9,11 +9,12 @@ import {
 } from './actionsTypes';
 import { uiStartLoading, uiStopLoading } from './index';
 
-const rootDBUrl = "https://et3alem-w-etrafah.firebaseio.com/";
+const ROOT_DB_URL = "https://et3alem-w-etrafah.firebaseio.com/";
+const ALL_PLAYLIST_LOADED = false;
 
 export const addSeries = (seriesInfo, token) => {
     return dispatch => {
-        fetch(rootDBUrl + 'seriesInfo.json?auth=' + token, {
+        fetch(ROOT_DB_URL + 'seriesInfo.json?auth=' + token, {
             method: "POST",
             body: JSON.stringify(seriesInfo)
         })
@@ -37,7 +38,7 @@ export const addSeries = (seriesInfo, token) => {
 export const deleteSeries = (key, token) => {
     return dispatch => {
         dispatch(uiStartLoading());
-        fetch(rootDBUrl + `seriesInfo/${key}.json?auth=` + token, {
+        fetch(ROOT_DB_URL + `seriesInfo/${key}.json?auth=` + token, {
             method: "DELETE",
         })
             .then(res => {
@@ -49,7 +50,7 @@ export const deleteSeries = (key, token) => {
             })
             .then(___ => {
                 dispatch(uiStopLoading());
-                dispatch(deleteSuccess());
+                // dispatch(deleteSuccess());
             })
             .catch(err => {
                 dispatch(uiStopLoading());
@@ -71,8 +72,16 @@ export const deleteFail = () => {
 }
 
 export const uploadedSuccessfully = () => {
+    console.log("__uploadedSuccessfully__");
     return {
         type: UPLOADED_SUCCESSFULLY,
+    }
+}
+
+export const dispatchActions = (method) => {
+    console.log("__dispatchActions__");
+    return dispatch => {
+        dispatch(method());
     }
 }
 
@@ -88,11 +97,11 @@ export const resetRequestsStates = () => {
     }
 }
 
-export const addEpisode = (seriesName, episodeInfo) => {
+export const addEpisode = (seriesName, seriesId, episodeInfo, token) => {
     return dispatch => {
         let playlistID = episodeInfo.playlistID;
         let pageToken;
-        apiCall(pageToken, playlistID, seriesName);
+        apiCall(pageToken, playlistID, seriesName, seriesId, token);
     }
 }
 
@@ -104,7 +113,7 @@ function getUrl(pageToken, playListID) {
     return URL;
 }
 
-function apiCall(npt, playlistID, seriesName) {
+function apiCall(npt, playlistID, seriesName, seriesId, token) {
     fetch(getUrl(npt, playlistID))
         .then(res => {
             return res.json();
@@ -118,12 +127,14 @@ function apiCall(npt, playlistID, seriesName) {
                 let videosId = [];
                 for (const item of parsedRes.items) {
                     videosId.push({
-                        videoID: item.snippet.resourceId.videoId,
-                        playListID: item.snippet.playlistId,
-                        channelID: item.snippet.channelId,
+                        videoId: item.snippet.resourceId.videoId,
+                        playListId: item.snippet.playlistId,
+                        channelId: item.snippet.channelId,
                         channelTitle: item.snippet.channelTitle,
                         views: 0,
                         order: ++order,
+                        seriesName: seriesName,
+                        seriesId: seriesId
                     });
                 }
                 if (parsedRes.nextPageToken) {
@@ -133,15 +144,14 @@ function apiCall(npt, playlistID, seriesName) {
                 /*
                  * Posting the array of video IDs
                  */
-                console.log("seriesName: ", seriesName);
-
-                fetch("https://et3alem-w-etrafah.firebaseio.com/allEpisodes/" + seriesName + "/playlist.json", {
+                fetch(ROOT_DB_URL + "allEpisodes/" + seriesName + seriesId + "/playlist.json?auth=" + token, {
                     method: "POST",
                     body: JSON.stringify(videosId)
                 })
                     .then(res => res.json())
                     .then(__ => {
                         uploadedSuccessfully();
+                        alert("Episodes Uploaded Successfully!");
                     })
                     .catch(err => {
                         console.log(err);
@@ -152,15 +162,12 @@ function apiCall(npt, playlistID, seriesName) {
         .catch(err => console.log(err))
 }
 
-
-
-
 export const getSeries = (token, userId) => {
     return dispatch => {
         // use it to get the saved series to a specific user (userId)
         // const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo"' + userId + '"'
 
-        fetch(rootDBUrl + "seriesInfo.json")
+        fetch(ROOT_DB_URL + "seriesInfo.json")
             .then(res => res.json())
             .then(parsedRes => {
                 const seriesInfo = [];
@@ -184,7 +191,7 @@ export const getSeries = (token, userId) => {
 
 export const saveSeries = () => {
     return dispatch => {
-        
+
     }
 }
 export const setSeries = (series) => {
@@ -198,5 +205,14 @@ export const selectSeries = (seriesName) => {
     return {
         type: SELECT_SERIES,
         selectedSeries: seriesName
+    }
+}
+
+/**
+ * get the episodes of a specific series
+ */
+export const getEpisodes = () => {
+    return dispatch => {
+
     }
 }

@@ -33,8 +33,6 @@ export const authAdmin = (email, password) => {
             })
                 .then(res => res.json())
                 .then(parsedRed => {
-                    console.log("res: ", parsedRed);
-
                     dispatch(authSuccess(parsedRed.idToken))
                 })
                 .catch(err => {
@@ -77,8 +75,6 @@ export const authFail = (error) => {
 }
 
 export const authCheckTimeout = (expirationDate) => {
-    console.log("parsedRes.expiresIn: ", expirationDate);
-    
     return dispatch => {
         dispatch(setTimeout(() => {
             dispatch(authLogout())

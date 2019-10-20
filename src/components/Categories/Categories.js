@@ -56,7 +56,7 @@ class Categories extends Component {
                                     imgURL={series.imgURL}
                                     description={series.description}
                                     episodeNo={series.episodeNo}
-                                    showEpisodeForm={() => this.props.showEpisodeForm(series.englishName)}
+                                    showEpisodeForm={() => this.props.showEpisodeForm(series.englishName, series.key)}
                                     admin={this.props.admin}
                                     detailsHandler={this.func1}
                                     delete={() => this.deleteSeriesHandler(series)} />

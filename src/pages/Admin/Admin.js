@@ -13,7 +13,7 @@ import {
 import getDateTime from '../../utilities/getDate';
 import Auth from '../../components/Auth/Auth';
 import AlertMessage from '../../components/UI/AlertMessage/AlertMessage';
-import Backdrop from '../../components/UI/Backdrop/Backdrop';
+// import Backdrop from '../../components/UI/Backdrop/Backdrop';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 
@@ -25,6 +25,8 @@ class Admin extends Component {
         showModal: false,
         askDelete: false,
         showEpisodeForm: false,
+        seriesName: null,
+        seriesId: null
     }
 
     showModalHandler = () => {
@@ -35,10 +37,8 @@ class Admin extends Component {
         this.setState({ showModal: false })
     }
 
-    showAddEpisodeHandler = (seriesName) => {
-        console.log("showEpisodeForm: ", seriesName);
-
-        this.setState({ showEpisodeForm: true });
+    showAddEpisodeHandler = (seriesName, seriesId) => {
+        this.setState({ showEpisodeForm: true, seriesName: seriesName, seriesId: seriesId });
         this.props.onSelectSeries(seriesName);
     }
     addEpisodeHandler = (episodeFormInfo) => {
@@ -46,7 +46,7 @@ class Admin extends Component {
         for (let key in episodeFormInfo) {
             episodeInfo[key] = episodeFormInfo[key].val;
         }
-        this.props.onAddEpisode(this.props.seriesName, episodeInfo);
+        this.props.onAddEpisode(this.state.seriesName, this.state.seriesId, episodeInfo, this.props.token);
         this.closeModalHandler();
     }
 
@@ -85,11 +85,6 @@ class Admin extends Component {
     componentDidMount = () => {
         this.props.onRenderAdmin();
     }
-    /**
-     * add admin sign in +++
-     * make navigation to null til admin sign in +++
-     * add user login
-     */
     render() {
         if (!(this.props.authAdmin && this.props.token)) {
             return (
@@ -119,7 +114,8 @@ class Admin extends Component {
                         showModal={this.state.showModal}
                         closeModal={this.closeModalHandler}
                         askAdd={this.askAddConfirmationHandler}
-                        addEpisode={this.addEpisodeHandler} />
+                        addEpisode={this.addEpisodeHandler}
+                        seriesName={this.state.seriesName} />
                 </React.Fragment>
             )
         }
@@ -157,7 +153,7 @@ const mapDispatchToPops = dispatch => {
     return {
         onAddSeries: (seriesInfo, token) => dispatch(addSeries(seriesInfo, token)),
         onResetUploadState: () => dispatch(resetRequestsStates()),
-        onAddEpisode: (seriesName, episodeInfo) => dispatch(addEpisode(seriesName, episodeInfo)),
+        onAddEpisode: (seriesName, seriesId, episodeInfo, token) => dispatch(addEpisode(seriesName, seriesId, episodeInfo, token)),
         onSelectSeries: (seriesName) => dispatch(selectSeries(seriesName)),
         onRenderAdmin: () => dispatch(authRenderAdmin()),
     }

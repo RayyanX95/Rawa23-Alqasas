@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import classes from './Category.module.css'
 import ImgHoverOverlay from '../../UI/ImgHoverOverlay/ImgHoverOverlay';
@@ -21,7 +21,7 @@ class Category extends Component {
         return (
             <React.Fragment>
                 <div className={containerClass}
-                    onClickCapture={this.clickDetailsHandler}>
+                    onClick={this.clickDetailsHandler}>
                     <div className={classes.Category} >
                         <ImgHoverOverlay
                             add={this.props.showEpisodeForm}
@@ -37,6 +37,10 @@ class Category extends Component {
                     </div>
                 </div>
             </React.Fragment>
+
+            // <div className="p-5 border border-darken-4" onClick={() => alert("div clicked!")} >
+            //     <button className="btn btn-outline-success" onClick={(e) => {e.stopPropagation();alert("Btn clicked!")}} >Click me!</button>
+            // </div>
         )
     }
 }
