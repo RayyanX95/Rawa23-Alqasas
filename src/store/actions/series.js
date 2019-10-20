@@ -5,7 +5,8 @@ import {
     GET_SERIES,
     SELECT_SERIES,
     DELETE_SUCCESS,
-    DELETE_FAIL
+    DELETE_FAIL,
+    SET_EPISODES
 } from './actionsTypes';
 import { uiStartLoading, uiStopLoading } from './index';
 
@@ -211,8 +212,36 @@ export const selectSeries = (seriesName) => {
 /**
  * get the episodes of a specific series
  */
-export const getEpisodes = () => {
+export const getEpisodes = (seriesName, seriesId) => {
     return dispatch => {
+        dispatch(uiStartLoading())
+        fetch(ROOT_DB_URL + "allEpisodes/" + seriesName + seriesId + "/playlist.json")
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    throw (new Error());
+                }
+            })
+            .then(parsedRes => {
+                let key_ = null;
+                for (const key in parsedRes) {
+                    key_ = key;
+                };
+                console.log("key_: ", parsedRes[key_]);
+                dispatch(setEpisodes(parsedRes[key_]))
+                dispatch(uiStopLoading());
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(uiStopLoading());
+            })
+    }
+}
 
+export const setEpisodes = episodes => {
+    return {
+        type: SET_EPISODES,
+        episodes: episodes
     }
 }

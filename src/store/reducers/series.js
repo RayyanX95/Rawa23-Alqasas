@@ -5,11 +5,13 @@ import {
     GET_SERIES,
     SELECT_SERIES,
     DELETE_SUCCESS,
-    DELETE_FAIL
+    DELETE_FAIL,
+    SET_EPISODES
 } from '../actions/actionsTypes';
 
 const initialState = {
     series: null,
+    episodes: null,
     selectedSeries: null,
     selectedSeriesEpisodes: null,
     uploadedSuccessfully: false,
@@ -60,6 +62,11 @@ const reducer = (state = initialState, actions) => {
                 ...state,
                 deleteFail: true,
                 deleteSuccess: false
+            };
+        case SET_EPISODES:
+            return {
+                ...state,
+                episodes: actions.episodes
             };
         default:
             return state;

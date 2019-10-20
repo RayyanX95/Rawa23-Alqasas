@@ -1,0 +1,16 @@
+.YouTubeDesktop {
+    display: block;
+}
+
+.YouTubeMobile {
+    display: none;
+}
+
+@media (max-width: 444px) {
+    .YouTubeDesktop {
+        display: none;
+    }
+    .YouTubeMobile {
+        display: block;
+    }
+  }

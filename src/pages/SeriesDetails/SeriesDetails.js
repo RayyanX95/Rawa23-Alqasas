@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import YouTubeVideoPlayer from '../../components/Video/YouTubeVideoPlayer';
 import classes from './SeriesDetails.module.css';
 import ParseQueryParams from '../../utilities/ParseQueryParams';
-import Spinner from '../../components/UI/Spinner/Spinner'
+import Spinner from '../../components/UI/Spinner/Spinner';
+import { getEpisodes } from '../../store/actions/index';
+import EpisodeItem from '../../components/EpisodeItem/EpisodeItem'
 
 
 class SeriesDetails extends Component {
@@ -17,7 +19,8 @@ class SeriesDetails extends Component {
     if (this.props.series) {
       let selectedSeries = null;
       selectedSeries = this.props.series.find(ser => ser.englishName === queryParams.name);
-      this.setState({ selectedSeries: selectedSeries })
+      this.setState({ selectedSeries: selectedSeries });
+      this.props.onGetEpisodes(selectedSeries.englishName, selectedSeries.key);
     }
   }
 
@@ -27,10 +30,16 @@ class SeriesDetails extends Component {
       let selectedSeries = null;
       selectedSeries = this.props.series.find(ser => ser.englishName === queryParams.name);
       this.setState({ selectedSeries: selectedSeries })
+      this.props.onGetEpisodes(selectedSeries.englishName, selectedSeries.key);
     }
   }
 
   render() {
+    let episodes_ = null
+    if (this.props.episodes) {
+      episodes_ = this.props.episodes;
+      console.log(" this.props.episodes: ", episodes_);
+    }
     if (this.state.selectedSeries) {
       return (
         <div className={classes.Container} >
@@ -40,6 +49,18 @@ class SeriesDetails extends Component {
               height={540} />
           </div>
           <div className={classes.List} >
+            {
+              episodes_ ?
+                episodes_.map(episode =>
+                  <EpisodeItem
+                    key={episode.videoId}
+                    arabicName={ this.state.selectedSeries.arabicName}
+                    englishName={this.state.selectedSeries.englishName}
+                    episodeName={"الحلقة " + episode.order}
+                    imgSrc={this.state.selectedSeries.imgURL} />
+                )
+                : <Spinner />
+            }
 
           </div>
         </div>
@@ -51,8 +72,15 @@ class SeriesDetails extends Component {
 
 const mapStateToProps = state => {
   return {
-    series: state.series.series
+    series: state.series.series,
+    episodes: state.series.episodes,
   }
 }
 
-export default connect(mapStateToProps)(SeriesDetails)
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetEpisodes: (seriesName, seriesId) => dispatch(getEpisodes(seriesName, seriesId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SeriesDetails)

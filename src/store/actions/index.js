@@ -5,7 +5,8 @@ export {
     getSeries,
     addEpisode,
     selectSeries,
-    deleteSeries
+    deleteSeries,
+    getEpisodes
 } from './series';
 
 export {
