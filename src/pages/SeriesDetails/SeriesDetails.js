@@ -34,7 +34,15 @@ class SeriesDetails extends Component {
     }
   }
 
+  /**
+   * add title and some action under video player
+   */
   render() {
+    window.scroll({
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth'
+    });
     let episodes_ = null
     if (this.props.episodes) {
       episodes_ = this.props.episodes;
