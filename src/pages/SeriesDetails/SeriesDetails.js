@@ -11,58 +11,70 @@ import EpisodeItem from '../../components/EpisodeItem/EpisodeItem'
 
 class SeriesDetails extends Component {
   state = {
-    selectedSeries: null
+    selectedSeries: null,
+    trailer: "Dummy",
+    episode: null,
+    queryParams: null
+
   }
 
-  componentDidMount = () => {
+  setVideoIdHandler = (videoId) => {
+    this.setState({ episode: videoId });
+    this.props.history.push({
+      search: `?series=${this.state.selectedSeries.key}&&ep=${videoId}`,
+    })
+  }
+
+  hooksHandler = () => {
     const queryParams = ParseQueryParams(this.props.location.search)
-    if (this.props.series) {
-      let selectedSeries = null;
-      selectedSeries = this.props.series.find(ser => ser.englishName === queryParams.name);
-      this.setState({ selectedSeries: selectedSeries });
+    let selectedSeries = null;
+    if (!this.state.selectedSeries && this.props.series) {
+      selectedSeries = this.props.series.find(ser => ser.key === queryParams.series);
+      this.setState({
+        selectedSeries: selectedSeries,
+        trailer: selectedSeries.startTrailer,
+        episode: null,
+      });
       this.props.onGetEpisodes(selectedSeries.englishName, selectedSeries.key);
+      document.title = selectedSeries.arabicName;
     }
+
+    if (this.props.episodes && this.state.trailer && queryParams.ep) {
+      const selectedEpisode = this.props.episodes.find(ep => ep.videoId === queryParams.ep);
+      this.setState({ episode: selectedEpisode.videoId, trailer: null });
+    }
+  }
+  componentDidMount = () => {
+    this.hooksHandler();
   }
 
   componentDidUpdate = () => {
-    const queryParams = ParseQueryParams(this.props.location.search)
-    if (!this.state.selectedSeries) {
-      let selectedSeries = null;
-      selectedSeries = this.props.series.find(ser => ser.englishName === queryParams.name);
-      this.setState({ selectedSeries: selectedSeries })
-      this.props.onGetEpisodes(selectedSeries.englishName, selectedSeries.key);
-    }
+    this.hooksHandler();
   }
 
-  /**
-   * add title and some action under video player
-   */
   render() {
     window.scroll({
-      top: 0, 
-      left: 0, 
+      top: 0,
+      left: 0,
       behavior: 'smooth'
     });
-    let episodes_ = null
-    if (this.props.episodes) {
-      episodes_ = this.props.episodes;
-      console.log(" this.props.episodes: ", episodes_);
-    }
+
     if (this.state.selectedSeries) {
       return (
         <div className={classes.Container} >
           <div className={classes.VideoContainer} >
             <YouTubeVideoPlayer
-              videoID={this.state.selectedSeries.startTrailer}
+              videoID={this.state.trailer ? this.state.trailer : this.state.episode}
               height={540} />
           </div>
           <div className={classes.List} >
             {
-              episodes_ ?
-                episodes_.map(episode =>
+              this.props.episodes ?
+                this.props.episodes.map(episode =>
                   <EpisodeItem
+                    clicked={() => this.setVideoIdHandler(episode.videoId)}
                     key={episode.videoId}
-                    arabicName={ this.state.selectedSeries.arabicName}
+                    arabicName={this.state.selectedSeries.arabicName}
                     englishName={this.state.selectedSeries.englishName}
                     episodeName={"الحلقة " + episode.order}
                     imgSrc={this.state.selectedSeries.imgURL} />

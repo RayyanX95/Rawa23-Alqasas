@@ -224,12 +224,11 @@ export const getEpisodes = (seriesName, seriesId) => {
                 }
             })
             .then(parsedRes => {
-                let key_ = null;
+                let episodes = null;
                 for (const key in parsedRes) {
-                    key_ = key;
+                    episodes = parsedRes[key];
                 };
-                console.log("key_: ", parsedRes[key_]);
-                dispatch(setEpisodes(parsedRes[key_]))
+                dispatch(setEpisodes(episodes))
                 dispatch(uiStopLoading());
             })
             .catch(err => {

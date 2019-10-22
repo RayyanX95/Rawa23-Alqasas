@@ -7,11 +7,13 @@ import ImgHoverOverlay from '../../UI/ImgHoverOverlay/ImgHoverOverlay';
 class Category extends Component {
 
     clickDetailsHandler = () => {
-        this.props.history.push({
-            pathname: '/details',
-            search: `?id=${this.props.id}&name=${this.props.link}`,
-            state: this.props.series
-        })
+        // this.props.history.push({
+        //     pathname: '/details',
+        //     search: `?id=${this.props.id}&name=${this.props.link}`,
+        //     state: this.props.series
+        // })
+        const videoId = null
+        window.open(`/#/details?series=${this.props.id}`)
     }
     render() {
         let containerClass = [classes.CategoryContainer];

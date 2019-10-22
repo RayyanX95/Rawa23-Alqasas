@@ -3,7 +3,8 @@ import classes from './EpisodeItem.module.css'
 
 const EpisodeItem = (props) => {
     return (
-        <div className={classes.Container} >
+        <div className={classes.Container}
+            onClick={props.clicked} >
             <div className={classes.TitleContainer} >
                 <p className={classes.EpisodeTitle} >{props.episodeName}</p>
                 <p className={classes.SeriesTitle} >{" | " + props.arabicName}</p>
