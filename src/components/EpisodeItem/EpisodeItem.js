@@ -1,5 +1,6 @@
 import React from 'react';
-import classes from './EpisodeItem.module.css'
+
+import classes from './EpisodeItem.module.css';
 
 const EpisodeItem = (props) => {
     return (

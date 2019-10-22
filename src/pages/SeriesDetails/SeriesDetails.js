@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import YouTubeVideoPlayer from '../../components/Video/YouTubeVideoPlayer';
 import classes from './SeriesDetails.module.css';
@@ -71,13 +72,15 @@ class SeriesDetails extends Component {
             {
               this.props.episodes ?
                 this.props.episodes.map(episode =>
-                  <EpisodeItem
-                    clicked={() => this.setVideoIdHandler(episode.videoId)}
-                    key={episode.videoId}
-                    arabicName={this.state.selectedSeries.arabicName}
-                    englishName={this.state.selectedSeries.englishName}
-                    episodeName={"الحلقة " + episode.order}
-                    imgSrc={this.state.selectedSeries.imgURL} />
+                  <Link style={{textDecoration: "none"}} to={`/details?series=${this.state.selectedSeries.key}&&ep=${episode.videoId}`}>
+                    <EpisodeItem
+                      clicked={() => this.setVideoIdHandler(episode.videoId)}
+                      key={episode.videoId}
+                      arabicName={this.state.selectedSeries.arabicName}
+                      englishName={this.state.selectedSeries.englishName}
+                      episodeName={"الحلقة " + episode.order}
+                      imgSrc={this.state.selectedSeries.imgURL} />
+                  </Link>
                 )
                 : <Spinner />
             }
