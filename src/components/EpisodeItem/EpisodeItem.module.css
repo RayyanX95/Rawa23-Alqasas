@@ -42,3 +42,10 @@
     font-size: 1rem;
     color: var(--mainGray);
 }
+
+.Playing {
+    background-color: #3f3d3d;
+}
+.Playing p {
+    color: var(--mainBlue);
+}

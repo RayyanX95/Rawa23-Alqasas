@@ -7,9 +7,40 @@
 }
 .VideoContainer {
     width: 65%;
-    max-height: 540px;
-    background-color: #000000;
 }
+.Video {
+    width: 100%;
+    max-height: 540px;
+    background-color: #000000; 
+}
+
+.TitleContainer {
+    width: 100%;
+    text-align: right;
+    border-bottom: 1px solid var(--lightBlue);
+    padding: 7px 20px 25px;
+}
+.TitleContainer p {
+    margin-bottom: 0;
+
+}
+.EpisodeTitle {
+    font-size: 1.3rem;
+    color: var(--mainWhite);
+    font-weight: bold;
+    padding: 0;
+}
+.SeriesTitle {
+    font-size: 1rem;
+    color: var(--mainGray);
+}
+.SeriesInfo {
+    font-size: 0.8rem;
+    color: #e6e4e4a6;
+    font-weight: bold;
+}
+
+/***/
 .List {
     width: 35%;
     border: 1px solid var(--lightBlue);

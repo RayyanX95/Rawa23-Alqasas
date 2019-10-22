@@ -13,16 +13,16 @@ import EpisodeItem from '../../components/EpisodeItem/EpisodeItem'
 class SeriesDetails extends Component {
   state = {
     selectedSeries: null,
+    selectedEpisode: null,
     trailer: "Dummy",
-    episode: null,
     queryParams: null
 
   }
 
-  setVideoIdHandler = (videoId) => {
-    this.setState({ episode: videoId });
+  setVideoIdHandler = (episode) => {
+    this.setState({ selectedEpisode: episode });
     this.props.history.push({
-      search: `?series=${this.state.selectedSeries.key}&&ep=${videoId}`,
+      search: `?series=${this.state.selectedSeries.key}&&ep=${episode.videoId}`,
     })
   }
 
@@ -34,7 +34,7 @@ class SeriesDetails extends Component {
       this.setState({
         selectedSeries: selectedSeries,
         trailer: selectedSeries.startTrailer,
-        episode: null,
+        selectedEpisode: null,
       });
       this.props.onGetEpisodes(selectedSeries.englishName, selectedSeries.key);
       document.title = selectedSeries.arabicName;
@@ -42,7 +42,7 @@ class SeriesDetails extends Component {
 
     if (this.props.episodes && this.state.trailer && queryParams.ep) {
       const selectedEpisode = this.props.episodes.find(ep => ep.videoId === queryParams.ep);
-      this.setState({ episode: selectedEpisode.videoId, trailer: null });
+      this.setState({ selectedEpisode: selectedEpisode, trailer: null });
     }
   }
   componentDidMount = () => {
@@ -60,26 +60,37 @@ class SeriesDetails extends Component {
       behavior: 'smooth'
     });
 
-    if (this.state.selectedSeries) {
+    if (this.state.selectedSeries && this.state.selectedEpisode) {
       return (
         <div className={classes.Container} >
           <div className={classes.VideoContainer} >
-            <YouTubeVideoPlayer
-              videoID={this.state.trailer ? this.state.trailer : this.state.episode}
-              height={540} />
+            <div className={classes.Video} >
+              <YouTubeVideoPlayer
+                videoID={this.state.trailer ? this.state.trailer : this.state.selectedEpisode.videoId}
+                height={540} />
+            </div>
+            <div className={classes.TitleContainer} >
+                <p className={classes.EpisodeTitle} >{this.state.selectedEpisode.order + " الحلقة"}</p>
+                <p className={classes.SeriesTitle} >{this.state.selectedSeries.englishName + " | " + this.state.selectedSeries.arabicName}</p>
+                <span className={classes.SeriesInfo} >{" عدد الحلقات " + this.state.selectedSeries.episodeNo}</span>
+                <span className={classes.SeriesInfo} >{" • " + this.state.selectedSeries.productionYear}</span>
+            </div>
           </div>
           <div className={classes.List} >
             {
               this.props.episodes ?
                 this.props.episodes.map(episode =>
-                  <Link style={{textDecoration: "none"}} to={`/details?series=${this.state.selectedSeries.key}&&ep=${episode.videoId}`}>
+                  <Link style={{ textDecoration: "none" }}
+                    key={episode.videoId}
+                    to={`/details?series=${this.state.selectedSeries.key}&&ep=${episode.videoId}`}>
                     <EpisodeItem
-                      clicked={() => this.setVideoIdHandler(episode.videoId)}
+                      clicked={() => this.setVideoIdHandler(episode)}
                       key={episode.videoId}
                       arabicName={this.state.selectedSeries.arabicName}
                       englishName={this.state.selectedSeries.englishName}
                       episodeName={"الحلقة " + episode.order}
-                      imgSrc={this.state.selectedSeries.imgURL} />
+                      imgSrc={this.state.selectedSeries.imgURL}
+                      playing={this.state.selectedEpisode.videoId === episode.videoId} />
                   </Link>
                 )
                 : <Spinner />
