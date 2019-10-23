@@ -6,6 +6,24 @@
     display: none;
 }
 
+.YouTubeMobileWindow {
+    display: none;
+}
+
+/**/
+
+@media (max-width: 701px) {
+    .YouTubeDesktop {
+        display: none;
+    }
+    .YouTubeMobile {
+        display: none;
+    }
+    .YouTubeMobileWindow {
+        display: block;
+    }
+}
+
 @media (max-width: 444px) {
     .YouTubeDesktop {
         display: none;
@@ -13,4 +31,7 @@
     .YouTubeMobile {
         display: block;
     }
-  }
+    .YouTubeMobileWindow {
+        display: none;
+    }
+}

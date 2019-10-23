@@ -16,7 +16,7 @@ class Navigation extends Component {
     }
     render() {
         const pathnameCheck = this.props.history.location.pathname === "/details";
-        const widthCheck = window.innerWidth < 444;
+        const widthCheck = window.innerWidth < 701;
         
         if ((this.props.renderAdmin && !this.props.authAdmin) || (pathnameCheck && widthCheck)) {
             return null;
