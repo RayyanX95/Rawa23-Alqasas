@@ -1,9 +1,11 @@
 .Container {
     background-color: #222222;
-    margin-top: 70px;
+    width: 80%;
+    margin: 70px auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .headTitle {
@@ -11,11 +13,13 @@
     color: var(--mainDark);
     font-size: 1.2rem;
 }
+
 .SeriesName {
     color: var(--mainDark);
     font-size: 1.3rem;
     font-weight: bold;
 }
+
 .Message {
     color: red;
     font-size: 1rem;
@@ -30,13 +34,16 @@
     margin-top: 35px;
     padding: 0;
 }
-.Controls button{
+
+.Controls button {
     margin: 0;
     font-weight: bold;
 }
 
+/**/
+
 @media (max-width: 444px) {
     .Container {
-        padding: 40px;
+        width: 100%;
     }
-  }
+}

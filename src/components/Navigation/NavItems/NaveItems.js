@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom'
 import classes from './NaveItems.module.css';
 
 const NaveItems = (props) => {
-    let home = <span style={{ fontSize: '1.5em' }}><i className="fas fa-home"></i></span>
-    let signIn = <span style={{ fontSize: '1.5em' }}><i className="fas fa-user-plus"></i></span>
-    let signOut = <span style={{ fontSize: '1.6em' }}><i className="fas fa-sign-out-alt"></i></span>
-    let admin = <span style={{ fontSize: '1.5em' }}><i className="fas fa-user-cog"></i></span>
+    let home = <span className={classes.Icon}><i className="fas fa-home"></i></span>
+    let signIn = <span className={classes.Icon}><i className="fas fa-user-plus"></i></span>
+    let signOut = <span className={classes.Icon}><i className="fas fa-sign-out-alt"></i></span>
+    let admin = <span className={classes.Icon}><i className="fas fa-user-cog"></i></span>
     return (
         <ul className={classes.Ul} >
             {

@@ -9,6 +9,13 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import { getEpisodes } from '../../store/actions/index';
 import EpisodeItem from '../../components/EpisodeItem/EpisodeItem'
 
+/**
+ * polish background video on mobile ***
+ * polish category on mobile
+ * remove navbar on mobile
+ * activate [browse all] button
+ * add autoplay btn
+ */
 
 class SeriesDetails extends Component {
   state = {

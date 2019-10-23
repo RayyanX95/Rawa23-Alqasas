@@ -43,26 +43,26 @@ class Categories extends Component {
         }
         if (this.props.series)
             return (
-                <div className={classes.Container + " container"} >
-                    <div className="row justify-content-between" >
-                        {
-                            this.props.series.map(series => {
-                                return <Category
-                                    key={series.key}
-                                    series={series}
-                                    id={series.key}
-                                    name={series.arabicName}
-                                    link={series.englishName}
-                                    imgURL={series.imgURL}
-                                    description={series.description}
-                                    episodeNo={series.episodeNo}
-                                    showEpisodeForm={() => this.props.showEpisodeForm(series.englishName, series.key)}
-                                    admin={this.props.admin}
-                                    detailsHandler={this.func1}
-                                    delete={() => this.deleteSeriesHandler(series)} />
-                            })
-                        }
-                    </div>
+                <div className={classes.Container} >
+                    {/* <div className="row justify-content-around" > */}
+                    {
+                        this.props.series.map(series => {
+                            return <Category
+                                key={series.key}
+                                series={series}
+                                id={series.key}
+                                name={series.arabicName}
+                                link={series.englishName}
+                                imgURL={series.imgURL}
+                                description={series.description}
+                                episodeNo={series.episodeNo}
+                                showEpisodeForm={() => this.props.showEpisodeForm(series.englishName, series.key)}
+                                admin={this.props.admin}
+                                detailsHandler={this.func1}
+                                delete={() => this.deleteSeriesHandler(series)} />
+                        })
+                    }
+                    {/* </div> */}
                     <Modal show={this.state.show} >
                         <p className={classes.headTitle}>
                             هل تريد مسح مسلسل<span className={classes.SeriesName} >

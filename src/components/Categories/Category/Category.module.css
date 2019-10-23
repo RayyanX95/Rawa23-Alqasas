@@ -1,13 +1,14 @@
 .CategoryContainer {
   height: 350px;
   width: 20%;
-  margin: 10px 1%;
+  margin: 0 20px;
   margin-bottom: 30px;
   cursor: pointer;
 }
+
 .Preview {
-    height: 300px;
-    width: 100%;
+  height: 300px;
+  width: 100%;
 }
 
 .Category {
@@ -20,6 +21,7 @@
 .ParContainer {
   padding: 5px;
 }
+
 .ParBold, .ParNormal {
   color: rgb(187, 187, 187);
   font-weight: bold;
@@ -28,6 +30,7 @@
   padding: 0;
   margin: 0;
 }
+
 .ParNormal {
   font-size: 0.85rem;
 }
@@ -38,9 +41,6 @@
   padding: 0;
   border: 2px red solid;
 }
-
-
-
 
 /*****************************************************************************/
 
@@ -56,8 +56,6 @@
 @media (max-width: 444px) {
   .CategoryContainer {
     height: 280px;
-    width: 44%;
-    margin: 10px 1%;
-    margin-bottom: 30px;
+    width: 41%;
   }
 }

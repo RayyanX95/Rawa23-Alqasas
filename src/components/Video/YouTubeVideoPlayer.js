@@ -4,16 +4,6 @@ import YouTube from 'react-youtube';
 import classes from './YouTubeVideoPlayer.module.css'
 
 class Video extends React.Component {
-
-  _onReady(event) {
-    // access to player in all event handlers via event.target
-    // event.target.pauseVideo();
-  }
-  _onEnd = () => {
-    console.log("_____OnEnd______");
-
-  }
-
   render() {
     const opts = {
       height: this.props.height + 'px',
@@ -39,14 +29,13 @@ class Video extends React.Component {
           className={classes.YouTubeDesktop}
           videoId={this.props.videoID}
           opts={opts}
-          onReady={this._onReady}
           onEnd={this.props.onEnd}
         />
         <YouTube
           className={classes.YouTubeMobile}
           videoId={this.props.videoID}
           opts={optsMobile}
-          onReady={this._onReady}
+          onEnd={this.props.onEnd}
         />
       </React.Fragment>
 

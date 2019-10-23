@@ -4,6 +4,11 @@ import classes from './BackgroundVideo.module.css';
 import videoSource from '../../assets/videoSource.mp4'
 
 const BackgroundVideo = () => {
+    let height = 550;
+    if (window.innerWidth > 1050)
+        height = 710
+    console.log("window.innerWidth: ", window.innerWidth);
+
     return (
         <div className={classes.Container} >
             <video autoPlay="autoplay" loop="loop" muted className={classes.Video} >
@@ -13,9 +18,16 @@ const BackgroundVideo = () => {
 
             <div className={classes.Content}>
                 <div className={classes.SubContent} >
-                    <h1>تعلم و ترفه</h1>
-                    <p>قصص دينية كارتونية للتعلم الترفه</p>
-                    <button type="button" className="btn btn-outline-dark">تصفح كل القصص</button>
+                    <h1>روائع القصص</h1>
+                    <p>أفضل ما ورد في قصص الانبياء والصالحين</p>
+                    <button
+                        className="btn btn-outline-dark"
+                        onClick={() => window.scroll({
+                            top: height,
+                            left: 0,
+                            behavior: 'smooth'
+                        })}
+                    >تصفح كل القصص</button>
                 </div>
             </div>
         </div>

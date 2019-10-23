@@ -6,3 +6,10 @@
     margin-right: 80px;
     margin-left: 80px;
 }
+
+@media (max-width: 444px) {
+    .Logo {
+        margin-right: 20px;
+        margin-left: 30px;
+    }
+}
