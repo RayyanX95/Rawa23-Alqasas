@@ -11,9 +11,9 @@ import EpisodeItem from '../../components/EpisodeItem/EpisodeItem'
 
 /**
  * polish background video on mobile ***
- * polish category on mobile
+ * polish category on mobile ***
  * remove navbar on mobile
- * activate [browse all] button
+ * activate [browse all] button ***
  * add autoplay btn
  */
 
@@ -22,12 +22,12 @@ class SeriesDetails extends Component {
     selectedSeries: null,
     selectedEpisode: null,
     trailer: "Dummy",
-    queryParams: null
-
+    queryParams: null,
+    episodeTitle: "تتر البداية"
   }
 
   setVideoIdHandler = (episode) => {
-    this.setState({ selectedEpisode: episode });
+    this.setState({ selectedEpisode: episode, episodeTitle: episode.order + " الحلقة " });
     this.props.history.push({
       search: `?series=${this.state.selectedSeries.key}&&ep=${episode.videoId}`,
     })
@@ -58,7 +58,11 @@ class SeriesDetails extends Component {
 
     if (this.props.episodes && this.state.trailer && queryParams.ep) {
       const selectedEpisode = this.props.episodes.find(ep => ep.videoId === queryParams.ep);
-      this.setState({ selectedEpisode: selectedEpisode, trailer: null });
+      this.setState({
+        selectedEpisode: selectedEpisode,
+        trailer: null,
+        episodeTitle: selectedEpisode.order + " الحلقة "
+      });
     }
   }
   componentDidMount = () => {
@@ -87,10 +91,10 @@ class SeriesDetails extends Component {
                 onEnd={this.onEndVideo} />
             </div>
             <div className={classes.TitleContainer} >
-              <p className={classes.EpisodeTitle} >{this.state.selectedEpisode ? this.state.selectedEpisode.order + " الحلقة" : ""}</p>
-              <p className={classes.SeriesTitle} >{this.state.selectedSeries.englishName + " | " + this.state.selectedSeries.arabicName}</p>
+              <p className={classes.EpisodeTitle} >{this.state.episodeTitle}</p>
+              <p className={classes.SeriesTitle} >{this.state.selectedSeries.arabicName}</p>
               <span className={classes.SeriesInfo} >{" عدد الحلقات " + this.state.selectedSeries.episodeNo}</span>
-              <span className={classes.SeriesInfo} >{this.state.selectedEpisode ? " • " + "إنتاج " + this.state.selectedSeries.productionYear : ""}</span>
+              <span className={classes.SeriesInfo} >{" • " + "إنتاج " + this.state.selectedSeries.productionYear}</span>
             </div>
           </div>
           <div className={classes.List} >

@@ -5,13 +5,16 @@
     padding: 0 0 0 50px;
     margin-top: 90px;
 }
+
 .VideoContainer {
     width: 65%;
 }
+
 .Video {
     width: 100%;
     max-height: 540px;
-    background-color: #000000; 
+    background-color: #000000;
+    /* border: red 1px solid; */
 }
 
 .TitleContainer {
@@ -20,20 +23,23 @@
     border-bottom: 1px solid var(--lightBlue);
     padding: 7px 20px 25px;
 }
+
 .TitleContainer p {
     margin-bottom: 0;
-
 }
+
 .EpisodeTitle {
     font-size: 1.3rem;
     color: var(--mainWhite);
     font-weight: bold;
     padding: 0;
 }
+
 .SeriesTitle {
     font-size: 1.03rem;
     color: var(--mainGray);
 }
+
 .SeriesInfo {
     font-size: 13px;
     color: #aaaaaa;
@@ -41,9 +47,11 @@
 }
 
 /***/
+
 .List {
     width: 35%;
     border: 1px solid var(--lightBlue);
+    border-top: none;
     background-color: var(--lightDark);
     padding: 50px 0;
 }
@@ -54,27 +62,19 @@
         padding: 0;
     }
     .VideoContainer {
-        width: 92%;
+        width: 100%;
         display: block;
         margin: 0 auto;
-        margin-top: 120px;
     }
     .List {
-        width: 92%;
+        width: 100%;
         margin: 0 auto;
+        border: none;
     }
-  }
+}
 
-  @media (max-width: 444px) {
+@media (max-width: 444px) {
     .VideoContainer {
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-        margin-top: 120px;
-        max-height: 400px;
+        margin-top: -90px;
     }
-    .List {
-        width: 100%;
-        margin: 0 auto;
-    }
-  }
+}

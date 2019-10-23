@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
 import classes from './Navigation.module.css';
 import Logo from './Logo/Logo';
@@ -14,7 +15,10 @@ class Navigation extends Component {
         this.setState({ isStared: !this.state.isStared })
     }
     render() {
-        if (this.props.renderAdmin && !this.props.authAdmin) {
+        const pathnameCheck = this.props.history.location.pathname === "/details";
+        const widthCheck = window.innerWidth < 444;
+        
+        if ((this.props.renderAdmin && !this.props.authAdmin) || (pathnameCheck && widthCheck)) {
             return null;
         }
         return (
@@ -38,5 +42,5 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Navigation);
+export default withRouter(connect(mapStateToProps)(Navigation));
 
