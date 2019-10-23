@@ -26,6 +26,15 @@ class SeriesDetails extends Component {
     })
   }
 
+  onEndVideo = () => {
+    const order = this.state.selectedEpisode.order + 1;
+    console.log("orderToPlay: ", order);
+    if (this.state.selectedEpisode) {
+      const selectedEpisode = this.props.episodes.find(ep => ep.order == order)
+      this.setState({ selectedEpisode: selectedEpisode });
+    }
+  }
+
   hooksHandler = () => {
     const queryParams = ParseQueryParams(this.props.location.search)
     let selectedSeries = null;
@@ -67,13 +76,14 @@ class SeriesDetails extends Component {
             <div className={classes.Video} >
               <YouTubeVideoPlayer
                 videoID={this.state.trailer ? this.state.trailer : this.state.selectedEpisode.videoId}
-                height={540} />
+                height={540}
+                onEnd={this.onEndVideo} />
             </div>
             <div className={classes.TitleContainer} >
               <p className={classes.EpisodeTitle} >{this.state.selectedEpisode ? this.state.selectedEpisode.order + " الحلقة" : ""}</p>
               <p className={classes.SeriesTitle} >{this.state.selectedSeries.englishName + " | " + this.state.selectedSeries.arabicName}</p>
               <span className={classes.SeriesInfo} >{" عدد الحلقات " + this.state.selectedSeries.episodeNo}</span>
-              <span className={classes.SeriesInfo} >{this.state.selectedEpisode ? " • " + this.state.selectedSeries.productionYear : ""}</span>
+              <span className={classes.SeriesInfo} >{this.state.selectedEpisode ? " • " + "إنتاج " + this.state.selectedSeries.productionYear : ""}</span>
             </div>
           </div>
           <div className={classes.List} >

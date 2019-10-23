@@ -9,6 +9,10 @@ class Video extends React.Component {
     // access to player in all event handlers via event.target
     // event.target.pauseVideo();
   }
+  _onEnd = () => {
+    console.log("_____OnEnd______");
+
+  }
 
   render() {
     const opts = {
@@ -17,6 +21,7 @@ class Video extends React.Component {
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 1,
         iv_load_policy: 3,
+        color: "white",
       }
     };
     const optsMobile = {
@@ -25,6 +30,7 @@ class Video extends React.Component {
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 1,
         iv_load_policy: 3,
+        color: "white"
       }
     };
     return (
@@ -34,6 +40,7 @@ class Video extends React.Component {
           videoId={this.props.videoID}
           opts={opts}
           onReady={this._onReady}
+          onEnd={this.props.onEnd}
         />
         <YouTube
           className={classes.YouTubeMobile}
