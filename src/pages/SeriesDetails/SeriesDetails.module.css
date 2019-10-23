@@ -31,12 +31,12 @@
     padding: 0;
 }
 .SeriesTitle {
-    font-size: 1rem;
+    font-size: 1.03rem;
     color: var(--mainGray);
 }
 .SeriesInfo {
-    font-size: 0.8rem;
-    color: #e6e4e4a6;
+    font-size: 13px;
+    color: #aaaaaa;
     font-weight: bold;
 }
 

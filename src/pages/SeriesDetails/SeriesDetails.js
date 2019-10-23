@@ -60,7 +60,7 @@ class SeriesDetails extends Component {
       behavior: 'smooth'
     });
 
-    if (this.state.selectedSeries && this.state.selectedEpisode) {
+    if (this.state.selectedSeries) {
       return (
         <div className={classes.Container} >
           <div className={classes.VideoContainer} >
@@ -70,10 +70,10 @@ class SeriesDetails extends Component {
                 height={540} />
             </div>
             <div className={classes.TitleContainer} >
-                <p className={classes.EpisodeTitle} >{this.state.selectedEpisode.order + " الحلقة"}</p>
-                <p className={classes.SeriesTitle} >{this.state.selectedSeries.englishName + " | " + this.state.selectedSeries.arabicName}</p>
-                <span className={classes.SeriesInfo} >{" عدد الحلقات " + this.state.selectedSeries.episodeNo}</span>
-                <span className={classes.SeriesInfo} >{" • " + this.state.selectedSeries.productionYear}</span>
+              <p className={classes.EpisodeTitle} >{this.state.selectedEpisode ? this.state.selectedEpisode.order + " الحلقة" : ""}</p>
+              <p className={classes.SeriesTitle} >{this.state.selectedSeries.englishName + " | " + this.state.selectedSeries.arabicName}</p>
+              <span className={classes.SeriesInfo} >{" عدد الحلقات " + this.state.selectedSeries.episodeNo}</span>
+              <span className={classes.SeriesInfo} >{this.state.selectedEpisode ? " • " + this.state.selectedSeries.productionYear : ""}</span>
             </div>
           </div>
           <div className={classes.List} >
@@ -90,7 +90,7 @@ class SeriesDetails extends Component {
                       englishName={this.state.selectedSeries.englishName}
                       episodeName={"الحلقة " + episode.order}
                       imgSrc={this.state.selectedSeries.imgURL}
-                      playing={this.state.selectedEpisode.videoId === episode.videoId} />
+                      playing={this.state.selectedEpisode ? this.state.selectedEpisode.videoId === episode.videoId : false} />
                   </Link>
                 )
                 : <Spinner />
