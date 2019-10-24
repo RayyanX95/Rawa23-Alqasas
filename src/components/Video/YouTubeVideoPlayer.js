@@ -9,32 +9,32 @@ class Video extends React.Component {
     width: window.innerWidth
   }
 
-  // componentDidMount = () => {
-  //   // Additionally I could have just used an arrow function for the binding `this` to the component...
-  //   window.addEventListener("resize", this.updateDimensions);
-  // }
+  componentDidMount = () => {
+    // Additionally I could have just used an arrow function for the binding `this` to the component...
+    window.addEventListener("resize", this.updateDimensions);
+  }
 
-  // componentDidUpdate = () => {
-  //   // Additionally I could have just used an arrow function for the binding `this` to the component...
-  //   window.addEventListener("resize", this.updateDimensions);
-  // }
+  componentDidUpdate = () => {
+    // Additionally I could have just used an arrow function for the binding `this` to the component...
+    window.addEventListener("resize", this.updateDimensions);
+  }
 
-  // updateDimensions = () => {
-  //   this.setState({
-  //     height: window.innerHeight,
-  //     width: window.innerWidth
-  //   });
-  // }
+  updateDimensions = () => {
+    this.setState({
+      height: window.innerHeight,
+      width: window.innerWidth
+    });
+  }
 
-  // componentWillUnmount() {
-  //   window.removeEventListener("resize", this.updateDimensions);
-  // }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
 
   render() {
-    let height = 360;
-    // if (this.state.width > 444) {
-    //   height = 360;
-    // }
+    let height = 210;
+    if (this.state.width > 444) {
+      height = 360;
+    }
     const opts = {
       height: this.props.height + 'px',
       width: '100%',
