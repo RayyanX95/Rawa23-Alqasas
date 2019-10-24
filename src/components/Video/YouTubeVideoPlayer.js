@@ -31,10 +31,10 @@ class Video extends React.Component {
   // }
 
   render() {
-    let height = 210;
-    if (this.state.width > 444) {
-      height = 360;
-    }
+    let height = 360;
+    // if (this.state.width > 444) {
+    //   height = 360;
+    // }
     const opts = {
       height: this.props.height + 'px',
       width: '100%',
