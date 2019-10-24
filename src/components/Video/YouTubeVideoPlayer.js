@@ -61,22 +61,26 @@ class Video extends React.Component {
       }
     };
 
-    return (
-      <React.Fragment>
+
+    if (window.innerWidth > 701) {
+      console.log("window.innerWidth > 701: TRUE");
+      return (
         <YouTube
           className={classes.YouTubeDesktop}
           videoId={this.props.videoID}
           opts={opts}
           onEnd={this.props.onEnd}
         />
-        <YouTube
-          className={classes.YouTubeMobile}
-          videoId={this.props.videoID}
-          opts={optsMobile}
-          onEnd={this.props.onEnd}
-        />
-      </React.Fragment>
-
+      )
+    }
+    console.log("window.innerWidth > 701: FALSE");
+    return (
+      <YouTube
+        className={classes.YouTubeMobile}
+        videoId={this.props.videoID}
+        opts={optsMobile}
+        onEnd={this.props.onEnd}
+      />
     );
   }
 }
