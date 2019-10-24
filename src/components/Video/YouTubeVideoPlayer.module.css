@@ -6,11 +6,6 @@
     display: none;
 }
 
-.YouTubeMobileWindow {
-    display: none;
-    border: 1px solid red;
-}
-
 /**/
 
 @media (max-width: 701px) {
@@ -18,9 +13,6 @@
         display: none;
     }
     .YouTubeMobile {
-        display: block;
-    }
-    .YouTubeMobileWindow {
         display: block;
     }
 }
