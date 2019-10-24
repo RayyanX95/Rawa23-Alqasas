@@ -45,7 +45,7 @@ class Video extends React.Component {
   render() {
     // console.log("[render], seekTo: ", this.state.seekTo);
 
-    let height = 390;
+    let height = 380;
     // if (this.state.width > 444) {
     //   height = 360;
     // }
