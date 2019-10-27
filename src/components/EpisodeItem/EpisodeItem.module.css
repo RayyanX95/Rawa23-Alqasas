@@ -38,11 +38,6 @@
     padding: 0;
 }
 
-.SeriesTitle {
-    font-size: 1rem;
-    color: var(--mainGray);
-}
-
 .Playing {
     /* background-color: #3f3d3d; */
     font-weight: bold;
@@ -69,6 +64,12 @@
         height: 100%;
     }
     .TitleContainer {
-        padding: 10px;
+        padding: 0;
+        padding-right: 10px;
+        margin: 0;
+        margin-left: 5px;
+    }
+    .EpisodeTitle {
+        font-size: 0.96rem;
     }
 }
