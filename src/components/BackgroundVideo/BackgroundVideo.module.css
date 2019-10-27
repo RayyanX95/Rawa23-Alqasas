@@ -58,8 +58,9 @@
 }
 
 @media(max-width: 444px) {
-  .SubContent {
-    /* display: none; */
+  .SubContent p {
+    color: var(--darkGray);
+    font-size: 1.1rem;
   }
   .Video {
     width: 180%;

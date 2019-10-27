@@ -19,7 +19,7 @@ const BackgroundVideo = () => {
             <div className={classes.Content}>
                 <div className={classes.SubContent} >
                     <h1>روائع القصص</h1>
-                    <p>أفضل ما ورد في قصص الانبياء والصالحين</p>
+                    <p>مقتطفات من أفضل ما ورد في قصص الانبياء والصالحين</p>
                     <button
                         className="btn btn-outline-dark"
                         onClick={() => window.scroll({

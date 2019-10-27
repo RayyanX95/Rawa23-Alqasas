@@ -27,18 +27,20 @@ class SeriesDetails extends Component {
   }
 
   setVideoIdHandler = (episode) => {
-    this.setState({ selectedEpisode: episode, episodeTitle: episode.order + " الحلقة " });
+    this.setState({ selectedEpisode: episode, episodeTitle: episode.title });
     this.props.history.push({
       search: `?series=${this.state.selectedSeries.key}&&ep=${episode.videoId}`,
     })
   }
 
   onEndVideo = () => {
-    const order = this.state.selectedEpisode.order + 1;
-    console.log("orderToPlay: ", order);
     if (this.state.selectedEpisode) {
-      const selectedEpisode = this.props.episodes.find(ep => ep.order == order)
-      this.setState({ selectedEpisode: selectedEpisode });
+      const order = this.state.selectedEpisode.order + 1;
+      console.log("orderToPlay: ", order);
+      if (this.state.selectedEpisode) {
+        const selectedEpisode = this.props.episodes.find(ep => ep.order == order)
+        this.setState({ selectedEpisode: selectedEpisode });
+      }
     }
   }
 
@@ -61,7 +63,7 @@ class SeriesDetails extends Component {
       this.setState({
         selectedEpisode: selectedEpisode,
         trailer: null,
-        episodeTitle: selectedEpisode.order + " الحلقة "
+        episodeTitle: selectedEpisode.title
       });
     }
   }
@@ -92,7 +94,7 @@ class SeriesDetails extends Component {
             </div>
             <div className={classes.TitleContainer} >
               <p className={classes.EpisodeTitle} >{this.state.episodeTitle}</p>
-              <p className={classes.SeriesTitle} >{this.state.selectedSeries.arabicName}</p>
+              {/* <p className={classes.SeriesTitle} >{this.state.selectedSeries.arabicName}</p> */}
               <span className={classes.SeriesInfo} >{" عدد الحلقات " + this.state.selectedSeries.episodeNo}</span>
               <span className={classes.SeriesInfo} >{" • " + "إنتاج " + this.state.selectedSeries.productionYear}</span>
             </div>
@@ -109,7 +111,7 @@ class SeriesDetails extends Component {
                       key={episode.videoId}
                       arabicName={this.state.selectedSeries.arabicName}
                       englishName={this.state.selectedSeries.englishName}
-                      episodeName={"الحلقة " + episode.order}
+                      episodeName={episode.title}
                       imgSrc={this.state.selectedSeries.imgURL}
                       playing={this.state.selectedEpisode ? this.state.selectedEpisode.videoId === episode.videoId : false} />
                   </Link>

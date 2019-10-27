@@ -135,7 +135,8 @@ function apiCall(npt, playlistID, seriesName, seriesId, token) {
                         views: 0,
                         order: ++order,
                         seriesName: seriesName,
-                        seriesId: seriesId
+                        seriesId: seriesId,
+                        title: item.snippet.title
                     });
                 }
                 if (parsedRes.nextPageToken) {

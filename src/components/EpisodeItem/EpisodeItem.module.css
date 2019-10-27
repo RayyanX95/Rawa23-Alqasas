@@ -22,9 +22,8 @@
     width: 70%;
     height: 100%;
     text-align: right;
-    padding-right: 20px;
+    padding: 10px 20px 0 30px;
     border-bottom: 1px solid var(--lightBlue);
-    margin-left: 5%;
 }
 
 .TitleContainer p {
@@ -32,9 +31,8 @@
 }
 
 .EpisodeTitle {
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: var(--mainWhite);
-    font-weight: bold;
     padding: 0;
 }
 
@@ -44,7 +42,8 @@
 }
 
 .Playing {
-    background-color: #3f3d3d;
+    /* background-color: #3f3d3d; */
+    font-weight: bold;
 }
 
 .Playing p {
