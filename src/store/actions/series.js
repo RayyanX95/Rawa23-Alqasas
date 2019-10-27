@@ -127,6 +127,8 @@ function apiCall(npt, playlistID, seriesName, seriesId, token) {
                 let order = 0;
                 let videosId = [];
                 for (const item of parsedRes.items) {
+                    console.log(item.snippet.thumbnails.medium.url);
+                    
                     videosId.push({
                         videoId: item.snippet.resourceId.videoId,
                         playListId: item.snippet.playlistId,
@@ -136,7 +138,8 @@ function apiCall(npt, playlistID, seriesName, seriesId, token) {
                         order: ++order,
                         seriesName: seriesName,
                         seriesId: seriesId,
-                        title: item.snippet.title
+                        title: item.snippet.title,
+                        thumbnail: item.snippet.thumbnails.medium.url
                     });
                 }
                 if (parsedRes.nextPageToken) {

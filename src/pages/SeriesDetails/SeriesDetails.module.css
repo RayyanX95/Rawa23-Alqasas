@@ -31,7 +31,6 @@
 .EpisodeTitle {
     font-size: 1.1rem;
     color: var(--mainWhite);
-    font-weight: bold;
     padding: 0;
 }
 
@@ -76,5 +75,8 @@
 @media (max-width: 700px) {
     .VideoContainer {
         margin-top: -90px;
+    }
+    .EpisodeTitle {
+        font-size: 1.0rem;
     }
 }

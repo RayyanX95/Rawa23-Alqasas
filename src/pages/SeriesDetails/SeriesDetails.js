@@ -94,7 +94,6 @@ class SeriesDetails extends Component {
             </div>
             <div className={classes.TitleContainer} >
               <p className={classes.EpisodeTitle} >{this.state.episodeTitle}</p>
-              {/* <p className={classes.SeriesTitle} >{this.state.selectedSeries.arabicName}</p> */}
               <span className={classes.SeriesInfo} >{" عدد الحلقات " + this.state.selectedSeries.episodeNo}</span>
               <span className={classes.SeriesInfo} >{" • " + "إنتاج " + this.state.selectedSeries.productionYear}</span>
             </div>
@@ -112,7 +111,7 @@ class SeriesDetails extends Component {
                       arabicName={this.state.selectedSeries.arabicName}
                       englishName={this.state.selectedSeries.englishName}
                       episodeName={episode.title}
-                      imgSrc={this.state.selectedSeries.imgURL}
+                      imgSrc={episode.thumbnail}
                       playing={this.state.selectedEpisode ? this.state.selectedEpisode.videoId === episode.videoId : false} />
                   </Link>
                 )

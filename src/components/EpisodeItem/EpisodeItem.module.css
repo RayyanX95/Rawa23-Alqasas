@@ -1,6 +1,6 @@
 .Container {
     width: 100%;
-    height: 130px;
+    height: 90px;
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -14,16 +14,18 @@
 }
 
 .Img {
-    width: 25%;
+    width: 30%;
     height: 100%;
+    /* padding-bottom: 30px; */
 }
 
 .TitleContainer {
     width: 70%;
     height: 100%;
     text-align: right;
-    padding: 10px 20px 0 30px;
+    padding: 10px 20px 0 0;
     border-bottom: 1px solid var(--lightBlue);
+    margin-left: 30px;
 }
 
 .TitleContainer p {
@@ -54,7 +56,7 @@
 
 @media (max-width: 1079px) {
     .Img {
-        width: 17%;
+        width: 22%;
     }
     .TitleContainer {
         width: 78%;
@@ -63,7 +65,10 @@
 
 @media (max-width: 444px) {
     .Img {
-        width: 32%;
+        width: 35%;
         height: 100%;
+    }
+    .TitleContainer {
+        padding: 10px;
     }
 }
