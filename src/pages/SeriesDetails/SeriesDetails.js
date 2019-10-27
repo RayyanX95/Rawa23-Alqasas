@@ -36,11 +36,8 @@ class SeriesDetails extends Component {
   onEndVideo = () => {
     if (this.state.selectedEpisode) {
       const order = this.state.selectedEpisode.order + 1;
-      console.log("orderToPlay: ", order);
-      if (this.state.selectedEpisode) {
-        const selectedEpisode = this.props.episodes.find(ep => ep.order == order)
-        this.setState({ selectedEpisode: selectedEpisode });
-      }
+      const selectedEpisode = this.props.episodes.find(ep => ep.order == order)
+      this.setState({ selectedEpisode: selectedEpisode, episodeTitle: selectedEpisode.title });
     }
   }
 
