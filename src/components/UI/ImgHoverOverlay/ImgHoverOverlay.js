@@ -23,7 +23,7 @@ const ImgHoverOverlay = (props) => {
                 fontSize="60px" color="#cfcdcd" />
         )
     }
-    let description = props.description;
+    let description = props.description || '';
     if (description.length > 50) {
         description = props.description.substring(0, 100) + "...";
     }
