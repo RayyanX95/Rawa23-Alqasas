@@ -12,7 +12,6 @@ class Category extends Component {
         //     search: `?id=${this.props.id}&name=${this.props.link}`,
         //     state: this.props.series
         // })
-        const videoId = null
         window.open(`/#/details?series=${this.props.id}`)
     }
     render() {
